@@ -1,0 +1,28 @@
+.dropdown-menu {
+  background-color: #000000;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: #000000;
+}
+
+header .intro-text .intro-heading {
+    font-size: 40px;
+}
+
+@media(min-width:768px) {
+    header .intro-text {
+        padding-top: 70px;
+        padding-bottom: 10px;
+    }
+
+    header .intro-text .intro-lead-in {
+        font-size: 20px;
+    }
+
+    header .intro-text .intro-heading {
+        margin-bottom: 10px;
+        font-size: 40px;
+    }
+}
