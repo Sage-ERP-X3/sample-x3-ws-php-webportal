@@ -10,6 +10,8 @@ From a single portal php how can we use the X3 SOAP web service sales orders for
 
 * No X3 sources
 
+* The name of X3 webservice used is YOSOH (object SOH)
+
 ## Remarks
 
 * X3 Version minimum  X3 PU9
