@@ -4,6 +4,12 @@
 
 From a single portal php how can we use the X3 SOAP web service sales orders for reading and writing into Sage X3 ?
 
+## Documentation
+
+* [Howto pdf](https://github.com/Sage-ERP-X3/sample-x3-ws-php-webportal/blob/master/doc/pdf/Create_a_WebPortal_SageX3_WebServices.pdf).
+	
+* [Howto md](https://github.com/Sage-ERP-X3/sample-x3-ws-php-webportal/blob/master/doc/md/Create_a_WebPortal_SageX3_WebServices.md).
+
 ## Features
 
 * Only php source with EDI Eclipse php Luna
