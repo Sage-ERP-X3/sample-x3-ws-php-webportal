@@ -21,7 +21,7 @@ This document is intended for experienced Sage X3 users with administrator level
 
 June 2016<span id="_Contents" class="anchor"></span>
 
-<span id="_Toc453744988" class="anchor"></span>Requirements
+<span id="_Toc461028487" class="anchor"></span>Requirements
 
 To build the PHP web portal, you need the following:
 
@@ -31,7 +31,7 @@ To build the PHP web portal, you need the following:
 
 -   Microsoft Visual C++ 2012 Redistributable (x64)
 
-<span id="_Toc453676511" class="anchor"><span id="_Toc453744989" class="anchor"></span></span>Install Microsoft Visual C++ 2012 Redistributable (x64)
+<span id="_Toc453676511" class="anchor"><span id="_Toc461028488" class="anchor"></span></span>Install Microsoft Visual C++ 2012 Redistributable (x64)
 
 From <https://www.microsoft.com/en-US/download/details.aspx?id=30679>
 
@@ -41,13 +41,17 @@ There are multiple files available for this download. When prompted, select **VS
 
 <img src="./media/image7.png" width="294" height="162" />
 
-<span id="_Toc449016740" class="anchor"><span id="_Toc453744990" class="anchor"></span></span>Build the portal
+<span id="_Toc461028489" class="anchor"></span>Install Microsoft Visual C++ 2015 Redistributable (x64)
 
-<span id="_Toc453676512" class="anchor"><span id="_Toc453744991" class="anchor"></span></span>Install and configure WampServer
+From <https://www.microsoft.com/en-us/download/details.aspx?id=48145>
+
+<span id="_Toc461028490" class="anchor"><span id="_Toc449016740" class="anchor"></span></span>Build the portal
+
+<span id="_Toc453676512" class="anchor"><span id="_Toc461028491" class="anchor"></span></span>Install and configure WampServer
 
 You can download WampServer from [www.wampserver.com](http://www.wampserver.com). On the homepage, scroll down and download this one:
 
-**WAMP SERVER (64 BITS & PHP 5.5) 2.5 **
+**WAMP SERVER (64 BITS & PHP 5.6.15 & PHP7) 3 **
 
 By default, WampServer installs to **c:\\sage\\wamp**, but you can select a different folder when prompted.
 
@@ -99,7 +103,7 @@ Right-click the WampServer icon on your desktop or taskbar, and select **Restart
 
 Leave **All Services Running** while you set up the portal.
 
-<span id="_Toc449016744" class="anchor"><span id="_Toc453676513" class="anchor"><span id="_Toc453744992" class="anchor"></span></span></span>Configure the X3 server and the pool of X3 Web service
+<span id="_Toc449016744" class="anchor"><span id="_Toc453676513" class="anchor"><span id="_Toc461028492" class="anchor"></span></span></span>Configure the X3 server and the pool of X3 Web service
 
 In Sage X3, complete follow these steps.
 
@@ -155,11 +159,11 @@ From the right panel, click **Start/Update**.
 
 <img src="./media/image13.png" width="280" height="149" />
 
-<span id="_Toc453676514" class="anchor"><span id="_Toc453744993" class="anchor"></span></span>Install and configure the PHP Web portal
+<span id="_Toc453676514" class="anchor"><span id="_Toc461028493" class="anchor"></span></span>Install and configure the PHP Web portal
 
 If you have not already done so, start the web service pool you just created. See steps in the previous section for details.
 
-<span id="_Toc453676515" class="anchor"><span id="_Toc453744994" class="anchor"></span></span>Download the PHP web portal project files
+<span id="_Toc453676515" class="anchor"><span id="_Toc461028494" class="anchor"></span></span>Download the PHP web portal project files
 
 The project file for the PHP web portal is available from GitHub. The project file is open to everyone, so you do not need a GitHub account. The download file contains everything you need to create and configure the portal including the X3 patch for the YOSOH web service.
 
@@ -179,7 +183,7 @@ Extract all files to **C:\\Sage\\wamp\\www\\sagex3**.
 
 <img src="./media/image16.png" width="544" height="373" />
 
-<span id="_Toc449016746" class="anchor"><span id="_Toc453676516" class="anchor"><span id="_Toc453744995" class="anchor"></span></span></span>Configure the portal
+<span id="_Toc449016746" class="anchor"><span id="_Toc453676516" class="anchor"><span id="_Toc461028495" class="anchor"></span></span></span>Configure the portal
 
 Next, you need to configure the portal to communicate with Sage X3.
 
@@ -193,7 +197,7 @@ CODE\_LANG
 
 POOL\_ALIAS
 
-> WS\_ORDER YOSOH for orders, is just for this example. You might set up a different web service.
+> WS\_ORDER. YOSOH for orders, is just for this example. You might set up a different web service.
 >
 > WEB\_SITE\_LOGIN and WEB\_SITE\_PASSWD represent the credentials you will share with those who will be accessing these web services via the web portal.
 
@@ -235,7 +239,7 @@ This is an example of what your portal could look like.
 
 <img src="./media/image17.png" width="472" height="163" />
 
-<span id="install_patch_x3" class="anchor"><span id="_Toc453676517" class="anchor"><span id="_Toc453744996" class="anchor"></span></span></span>Install the X3 patch
+<span id="install_patch_x3" class="anchor"><span id="_Toc453676517" class="anchor"><span id="_Toc461028496" class="anchor"></span></span></span>Install the X3 patch
 
 You need to install the X3 patch containing the YOSOH web services. The file was downloaded in the ZIP file from GitHub.
 
@@ -260,7 +264,7 @@ The patch contains the following X3 objects:
 
 The web service ‘Available stock’ is not yet used at this moment.
 
-<span id="_Toc453676518" class="anchor"><span id="_Toc453744997" class="anchor"></span></span>Publish the web service
+<span id="_Toc453676518" class="anchor"><span id="_Toc461028497" class="anchor"></span></span>Publish the web service
 
 After installing the patch with the web service, you need to publish the service. This validates the web service so that it is visible.
 
@@ -268,13 +272,13 @@ In X3, navigate to Development &gt; Script dictionary &gt; Scripts and open **We
 
 <img src="./media/image19.png" width="579" height="290" />Click **Global publication**.
 
-<span id="_Toc453744998" class="anchor"></span>Use the portal
+<span id="_Toc461028498" class="anchor"></span>Use the portal
 
 Now that the web service has been published, you can begin accessing Sage X3 data in real-time via the portal.
 
 WampServer needs to be running to access the portal and Sage X3 services.
 
-<span id="_Toc453676519" class="anchor"><span id="_Toc453744999" class="anchor"></span></span>Access the portal
+<span id="_Toc453676519" class="anchor"><span id="_Toc461028499" class="anchor"></span></span>Access the portal
 
 Using the default browser you set earlier, enter the URL for your web portal.
 
@@ -300,7 +304,7 @@ When you look at this data in Sage X3, you can see that it is the same.
 
 <img src="./media/image23.png" width="471" height="167" />
 
-<span id="_Toc453676520" class="anchor"><span id="_Toc453745000" class="anchor"></span></span>Read an order
+<span id="_Toc453676520" class="anchor"><span id="_Toc461028500" class="anchor"></span></span>Read an order
 
 You can read orders by selecting from the list or by selecting **READ AN ORDER** from the **ORDERS X3** menu and entering the order number. For either method, you do not need to be logged in to the portal.
 
@@ -310,7 +314,7 @@ Clicking the order number or enter the order number provides detailed informatio
 
 <img src="./media/image24.png" width="471" height="269" />
 
-<span id="_Toc453676521" class="anchor"><span id="_Toc453745001" class="anchor"></span></span>Create an order
+<span id="_Toc453676521" class="anchor"><span id="_Toc461028501" class="anchor"></span></span>Create an order
 
 You can create an order in X3 using the portal. You need to be logged in to the portal to do this.
 
@@ -336,7 +340,7 @@ public static $WEB\_SITE\_PASSWD = "websage";
 
 ?&gt;
 
-<span id="_Toc453676522" class="anchor"><span id="_Toc453745002" class="anchor"></span></span>Create an order
+<span id="_Toc453676522" class="anchor"><span id="_Toc461028502" class="anchor"></span></span>Create an order
 
 In addition to viewing orders, you can create a new order through the portal.
 
@@ -356,7 +360,7 @@ In Sage X3 entry transaction WS, you can see the same order.
 
 <img src="./media/image28.png" width="471" height="241" />
 
-<span id="_Toc453745003" class="anchor"></span>For developers
+<span id="_Toc461028503" class="anchor"></span>For developers
 
 This section provides details specifically for developers who have advanced coding and web services knowledge. It uses the same YOSOH web service as an example.
 
@@ -366,7 +370,7 @@ This web service is an object web service with the optimized transaction WS.
 
 <img src="./media/image29.png" width="471" height="456" />
 
-<span id="_Toc453676523" class="anchor"><span id="_Toc453745004" class="anchor"></span></span>List the orders
+<span id="_Toc453676523" class="anchor"><span id="_Toc461028504" class="anchor"></span></span>List the orders
 
 **In the PHP code: **
 
@@ -446,7 +450,7 @@ The web service is working without error when the status is 1.
 
 -   0= ERROR
 
-<span id="_Toc453676524" class="anchor"><span id="_Toc453745005" class="anchor"></span></span>Read an order
+<span id="_Toc453676524" class="anchor"><span id="_Toc461028505" class="anchor"></span></span>Read an order
 
 **In the PHP code:**
 
@@ -492,7 +496,7 @@ After selecting **Invoke**
 
 <img src="./media/image37.png" width="336" height="203" />
 
-<span id="_Toc453676525" class="anchor"><span id="_Toc453745006" class="anchor"></span></span>Create an order while logged in
+<span id="_Toc453676525" class="anchor"><span id="_Toc461028506" class="anchor"></span></span>Create an order while logged in
 
 **Using the X3 tool**:
 
