@@ -3,25 +3,24 @@ require_once ('WebService/modelWS/ModelX3.php');
 class Product extends ModelX3 {
 	function showOne($crit) {
 		$listFieldLines = array (
-				"ITMREF",
-				"QTY",
-				"ITMDES1" 
+				"BPSNUM",
+				"ZBPSNUM"
 		);
 		$listFieldHeader = array (
-				"SOHNUM",
-				"BPCORD",
-				"ORDDAT",
-				"CUSORDREF",
-				"SALFCY",
-				"BPCNAM" 
+				"ITMREF",
+				"DES1AXX",
+				"TCLCOD",
+				"ITMSTA",
+				"EANCOD",
+				"SEAKEY" 
 		);
 		$WS = "*";
 		$cle = new CAdxParamKeyValue ();
-		$cle->key = "SOHNUM";
+		$cle->key = "ITMREF";
 		$cle->value = $crit;
-		// echo("oma");echo($cle->key);
-		// echo("oma");echo($cle->value);
-		$this->CAdxResultXml = $this->read ( Config::$WS_ORDER, Array (
+		//echo("oma");echo($cle->key);
+		//echo("oma");echo($cle->value);
+		$this->CAdxResultXml = $this->read ( Config::$WS_PRODUCT, Array (
 				$cle 
 		) );
 		if ($this->CAdxResultXml->status == 0) {
@@ -45,42 +44,40 @@ class Product extends ModelX3 {
 			if (in_array ( $val, $listFieldHeader )) {
 				$val2 = $f->nodeValue;
 				
-				if ($val == "SOHNUM") {
+				if ($val == "ITMREF") {
 					$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
-					$str .= "<label class='control-label' for='sohnum'>Order num</label>";
-					$str .= "<input class='form-control' type='text' id='sohnum' placeholder='";
+					$str .= "<label class='control-label' for='itmref'>Product num</label>";
+					$str .= "<input class='form-control' type='text' id='itmref' placeholder='";
 					// $str .="<div class='hidden' id='sohnum'>";
 					$str .= $val2;
 					$str .= "' disabled >";
-				} elseif ($val == "BPCORD") {
+				} elseif ($val == "DES1AXX") {
 					$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
-					$str .= "<label class='control-label' for='disabledInput'>Client</label>";
+					$str .= "<label class='control-label' for='disabledInput'>Description</label>";
 					$str .= "<input class='form-control' type='text' placeholder='";
 					$str .= $val2;
 					$str .= "' disabled >";
-				} elseif ($val == "ORDDAT") {
+				} elseif ($val == "TCLCOD") {
 					$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
-					$str .= "<label class='control-label' for='disabledInput'>order date</label>";
-					$str .= "<input class='form-control' type='text' placeholder='";
-					$originalDate = $val2;
-					$newDate = date ( "d-m-Y", strtotime ( $originalDate ) );
-					$str .= $newDate;
-					$str .= "' disabled >";
-				} elseif ($val == "CUSORDREF") {
-					$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
-					$str .= "<label class='control-label' for='disabledInput'>Reference</label>";
+					$str .= "<label class='control-label' for='disabledInput'>Category</label>";
 					$str .= "<input class='form-control' type='text' placeholder='";
 					$str .= $val2;
 					$str .= "' disabled >";
-				} elseif ($val == "SALFCY") {
+				} elseif ($val == "ITMSTA") {
 					$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
-					$str .= "<label class='control-label' for='disabledInput'>Site</label>";
+					$str .= "<label class='control-label' for='disabledInput'>Status</label>";
 					$str .= "<input class='form-control' type='text' placeholder='";
 					$str .= $val2;
 					$str .= "' disabled >";
-				} elseif ($val == "BPCNAM") {
+				} elseif ($val == "EANCOD") {
 					$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
-					$str .= "<label class='control-label' for='disabledInput'>Name of site</label>";
+					$str .= "<label class='control-label' for='disabledInput'>EAN Code</label>";
+					$str .= "<input class='form-control' type='text' placeholder='";
+					$str .= $val2;
+					$str .= "' disabled >";
+				} elseif ($val == "SEAKEY") {
+					$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
+					$str .= "<label class='control-label' for='disabledInput'>Search key</label>";
 					$str .= "<input class='form-control' type='text' placeholder='";
 					$str .= $val2;
 					$str .= "' disabled >";
@@ -98,22 +95,22 @@ class Product extends ModelX3 {
 		// $str.=$dom->getElementsByTagName('SOHNUM');
 		// $str.=" disabled=''>";
 		$str .= "<table class='table table-striped table-bordered table-condensed'>";
-		$str .= "<thead><tr><th>Product</th><th>Designation</th><th>Quantity</th></tr></thead><tbody>";
+		$str .= "<thead><tr><th>Supplier</th><th>Name</th></thead><tbody>";
 		
 		foreach ( $RES as $R ) {
 			
-			$commande = $R->getElementsByTagName ( 'FLD' );
+			$product = $R->getElementsByTagName ( 'FLD' );
 			// echo "<tr>";
 			$str .= "<tr>";
-			foreach ( $commande as $c ) {
-				$val = $c->getAttribute ( 'NAME' );
+			foreach ( $product as $p ) {
+				$val = $p->getAttribute ( 'NAME' );
 				if (in_array ( $val, $listFieldLines )) {
 					// echo "<td>";
 					$str .= "<td>";
 					
-					$val2 = $c->nodeValue;
+					$val2 = $p->nodeValue;
 					
-					$str .= $c->nodeValue;
+					$str .= $p->nodeValue;
 					
 					$str .= "</td>";
 				}
@@ -137,18 +134,18 @@ class Product extends ModelX3 {
 		$str .= "<thead><tr><th>Product num</th><th>Description</th><th>Category</th><th>Product status</th><th>EAN code</th><th>Search key</th></tr></thead><tbody>";
 		
 		foreach ( $RES as $R ) {
-			$commande = $R->getElementsByTagName ( 'FLD' );
+			$product = $R->getElementsByTagName ( 'FLD' );
 			$str .= "<tr>";
-			foreach ( $commande as $c ) {
+			foreach ( $product as $p ) {
 				$str .= "<td>";
-				$val = $c->getAttribute ( 'NAME' );
-				$val2 = $c->nodeValue;
-				if ($val == "SOHNUM") {
-					$str .= "<a HREF='page_soh_read.php?sohnum=$val2'>";
-					$str .= $c->nodeValue;
+				$val = $p->getAttribute ( 'NAME' );
+				$val2 = $p->nodeValue;
+				if ($val == "ITMREF") {
+					$str .= "<a HREF='page_itm_read.php?itmref=$val2'>";
+					$str .= $p->nodeValue;
 					$str .= "</a>";
 				} elseif ($val == "ITMSTA") {
-					switch ($c->nodeValue) {
+					switch ($p->nodeValue) {
 						case 1 :
 							$str .= "Active";
 							break;
@@ -169,7 +166,7 @@ class Product extends ModelX3 {
 							break;
 					}
 				} else {
-					$str .= $c->nodeValue;
+					$str .= $p->nodeValue;
 				}
 				$str .= "</td>";
 			}
