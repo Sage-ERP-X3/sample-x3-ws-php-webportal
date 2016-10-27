@@ -126,8 +126,11 @@ class Product extends ModelX3 {
 		return $str;
 	}
 	function showListe() {
-		$WS = "*";
-		$this->CAdxResultXml = $this->query ( Config::$WS_PRODUCT, $WS, 100 );
+		//$WS = "";
+		$WS = new CAdxParamKeyValue ();
+		$WS->key = "ITMSTA";
+		$WS->value = "<>5";
+		$this->CAdxResultXml = $this->query ( Config::$WS_PRODUCT, Array ($WS) , 100 );
 		$result = $this->CAdxResultXml->resultXml;
 		// $result contient le fichier XML des réponses
 		$dom = new DomDocument ();
