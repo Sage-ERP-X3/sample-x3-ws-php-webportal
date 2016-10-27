@@ -37,7 +37,15 @@ class Product extends ModelX3 {
 		// header
 		$fld = $dom->getElementsByTagName ( 'FLD' );
 		$str .= "<div class='row'>";
-		
+		foreach ( $fld as $f ) {
+			$val = $f->getAttribute ( 'NAME' );
+			if ( $val == "IMG") {
+				$val2 = $f->nodeValue;
+				$str .= "<div  style=\"float:left;\" class='col-lg-2 col-md-2 col-sm-1'>";
+				$str .= "<img height=150 src=\"data:image/jpeg;base64," . $val2 . "\">";
+				$str .= "</div>";
+			}
+		}
 		foreach ( $fld as $f ) {
 			
 			$val = $f->getAttribute ( 'NAME' );
@@ -123,8 +131,11 @@ class Product extends ModelX3 {
 		return $str;
 	}
 	function showListe() {
-		$WS = "*";
-		$this->CAdxResultXml = $this->query ( Config::$WS_PRODUCT, $WS, 100 );
+		//$WS = "";
+		$WS = new CAdxParamKeyValue ();
+		$WS->key = "ITMSTA";
+		$WS->value = "<>5";
+		$this->CAdxResultXml = $this->query ( Config::$WS_PRODUCT, Array ($WS) , 100 );
 		$result = $this->CAdxResultXml->resultXml;
 		// $result contient le fichier XML des réponses
 		$dom = new DomDocument ();
