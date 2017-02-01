@@ -1,7 +1,7 @@
 <?php
 
 class Config {
-	public static $WSDL            	= "http://x3pu9trainvm:8124/soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl";
+	public static $WSDL            	= "http://x3erpv11eapvm:8124/soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl";
 	public static $CODE_LANG       	= "ENG";
 	public static $CODE_USER       	= "admin";
 	public static $PASSWORD        	= "admin";
