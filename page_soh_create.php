@@ -58,10 +58,9 @@
 										name="formsalfcy2" placeholder="FR011">
 								</div-->
 								<div class="col-lg-5">
-									<select class="form-control" id="formsalfcy"
-										name="formsalfcy" placeholder="FR011">
-									<option value="FR011">FR011 - Comptech SA</option>
-									<option value="FR012">FR012 - Fabtech SA</option>
+									<select class="form-control" id="formsalfcy" name="formsalfcy">
+										<option value="FR011">FR011 - Comptech SA</option>
+										<option value="FR012">FR012 - Fabtech SA</option>
 									</select>
 								</div>
 							</div>
@@ -76,7 +75,7 @@
 								<label for="formorddat" class="col-lg-4 control-label">Date</label>
 								<div class="col-lg-5">
 									<input type="date" class="form-control" id="formorddat"
-										name="formorddat" placeholder="20150602">
+										name="formorddat" value="<?php echo date("Y-m-d"); ?>">
 								</div>
 							</div>
 							<div class="form-group">
@@ -89,14 +88,13 @@
 							<div class="form-group">
 								<label for="formbpcord" class="col-lg-4 control-label">Client</label>
 								<div class="col-lg-5">
-									<select class="form-control" id="formbpcord"
-										name="formbpcord" placeholder="FR004">
+									<select class="form-control" id="formbpcord" name="formbpcord">
 										<option value="FR001">FR001 - Urban Cycle</option>
 										<option value="FR002">FR002 - Velo Attitudes</option>
 										<option value="FR003">FR003 - Cybertek</option>
 										<option value="FR004">FR004 - Micro Systems</option>
 									</select>
-										
+
 								</div>
 							</div>
 						</fieldset>
@@ -116,13 +114,10 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td>
-												<select class="form-control"
-												name="formtabitmref[]" placeholder="DIS009">
-												 <option value="DIS009">DIS009 - Standard 22" screen 16:10</option>
-												 <option value="DIS010">DIS010 - Laser Printer B&W 10ppm</option>
-												</select>
-											</td>
+											<td><select class="form-control" name="formtabitmref[]">
+													<option value="DIS009">DIS009 - Standard 22" screen 16:10</option>
+													<option value="DIS010">DIS010 - Laser Printer B&amp;W 10ppm</option>
+											</select></td>
 											<td><input type="text" class="form-control"
 												name="formtabqty[]" placeholder="1" value="1"></td>
 											<td><button onclick="addLigne('tableorderlines');"
@@ -132,10 +127,10 @@
 												<button onclick="removeLigne('tableorderlines',this);"
 													class="btn btn-default" type="button">
 													<span class="glyphicon glyphicon-remove"></span>
-													
+
 												</button></td>
 										</tr>
-										
+
 
 									</tbody>
 								</table>
