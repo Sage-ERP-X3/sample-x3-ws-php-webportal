@@ -39,7 +39,7 @@
 																				$x3Connect = new Connect ( $formlogin, $formpasswd );
 																				$isConnect = $x3Connect->isConnect ();
 																				if ($isConnect) {
-																					//$_SESSION ["x3Connect"] = $x3Connect;
+																					// $_SESSION ["x3Connect"] = $x3Connect;
 																					$_SESSION ["x3login"] = $formlogin;
 																					$_SESSION ["x3passwd"] = $formpasswd;
 																					ToolsWS::printSucces ( "Successful connection" );

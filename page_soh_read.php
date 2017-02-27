@@ -16,7 +16,8 @@
 		<div class="container">
 			<div class="intro-text">
 				<div class="intro-heading">Read a X3 order</div>
-				<div class="intro-lead-in">Read a X3 order via the Object web service</div>
+				<div class="intro-lead-in">Read a X3 order via the Object web
+					service</div>
 
 			</div>
 
@@ -32,7 +33,8 @@
 						<fieldset>
 							<legend>Selection</legend>
 							<div class="form-group">
-								<label for="formsohnum" class="col-lg-4 control-label">Order number</label>
+								<label for="formsohnum" class="col-lg-4 control-label">Order
+									number</label>
 								<div class="col-lg-5">
 									<input type="text" class="form-control" id="formsohnum"
 										name="formsohnum" placeholder="">

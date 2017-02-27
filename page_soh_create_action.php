@@ -16,7 +16,8 @@
 		<div class="container">
 			<div class="intro-text">
 				<div class="intro-heading">Creation of X3 order</div>
-				<div class="intro-lead-in">Gives details of the X3 order following the creation via web service</div>
+				<div class="intro-lead-in">Gives details of the X3 order following
+					the creation via web service</div>
 
 			</div>
 
@@ -51,10 +52,10 @@
 																				$WS .= "<FLD NAME=\"CUR\">$formcur</FLD>";
 																				$WS .= "<FLD NAME=\"BPCORD\">$formbpcord</FLD>";
 																				$WS .= "</GRP>";
-																				$WS.="<GRP ID=\"SOH2_1\" >";
+																				$WS .= "<GRP ID=\"SOH2_1\" >";
 																				$WS .= "<FLD NAME=\"STOFCY\">$formsalfcy</FLD>";
 																				$WS .= "</GRP>";
-																				$WS.="<TAB ID=\"SOH4_1\">";
+																				$WS .= "<TAB ID=\"SOH4_1\">";
 																				for($i = 0; $i < count ( $formtabitmref ); $i ++) {
 																					$WS .= "<LIN>";
 																					$WS .= "<FLD NAME=\"ITMREF\">$formtabitmref[$i]</FLD>";

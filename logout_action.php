@@ -30,13 +30,13 @@
 
 					
                     <?php
-																				//require_once ('WebService/models/Connect.php');
+																				// require_once ('WebService/models/Connect.php');
 																				require_once ('WebService/modelWS/ToolsWS.php');
-																				$isConnect=false;
+																				$isConnect = false;
 																				$_SESSION ["x3login"] = "";
 																				$_SESSION ["x3passwd"] = "";
 																				
-																				ToolsWS::printSucces( "Successful log off" );
+																				ToolsWS::printSucces ( "Successful log off" );
 																				?>
 								
                    

@@ -17,8 +17,8 @@
 				<li class=""><a class="page-scroll" href="index.php">Home</a></li>
 				<li class=""><a class="page-scroll" href="connexion.php">Connection</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-expanded="false">Orders X3
-						<span class="caret"></span>
+					data-toggle="dropdown" role="button" aria-expanded="false">Orders
+						X3 <span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
 
@@ -38,29 +38,28 @@
 							<span><i class="fa fa-spinner"></i></span>
 						</button>
 					</div></li>
-					
-					
-					
-					
-					
-					
-					
+
+
+
+
+
+
+
 				<li class="">
-				
-				
-				<form action="logout_action.php"
-						method="post">
-						
+
+
+					<form action="logout_action.php" method="post">
+
 						<div id="icon-deconnect" class="hide">
-						<button  class="btn btn-primary" type="submit">
-							<span><i class="fa fa-power-off"></i></span>
-						</button>
-					</div>
+							<button class="btn btn-primary" type="submit">
+								<span><i class="fa fa-power-off"></i></span>
+							</button>
+						</div>
 					</form>
-				
-				
-				
-				
+
+
+
+
 				</li>
 
 

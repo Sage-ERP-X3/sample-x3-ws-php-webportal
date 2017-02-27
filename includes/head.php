@@ -1,18 +1,15 @@
 <?php
-session_start();
-
+session_start ();
 
 require_once ('WebService/models/Connect.php');
-$isConnect=false;
-if (isset($_SESSION ["x3login"])) {
-	$x3login=$_SESSION ["x3login"];
-	$x3passwd=$_SESSION ["x3passwd"];
+$isConnect = false;
+if (isset ( $_SESSION ["x3login"] )) {
+	$x3login = $_SESSION ["x3login"];
+	$x3passwd = $_SESSION ["x3passwd"];
 	
-	$x3Connect = new Connect($x3login, $x3passwd);
+	$x3Connect = new Connect ( $x3login, $x3passwd );
 	$isConnect = $x3Connect->isConnect ();
-	
 }
-
 
 ?>
 

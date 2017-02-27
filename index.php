@@ -13,11 +13,12 @@
 	<header>
 		<div class="container">
 			<div class="intro-text">
-				<div class="intro-heading" >X3 Web service</div>
+				<div class="intro-heading">X3 Web service</div>
 				<div class="intro-lead-in">
-					This will show you how a web site, <br /> can call a X3 web service.
+					This will show you how a web site, <br /> can call a X3 web
+					service.
 				</div>
-				
+
 			</div>
 
 		</div>
@@ -39,6 +40,6 @@
 });
 
     </script>
-	
+
 </body>
 </html>
