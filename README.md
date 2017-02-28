@@ -1,8 +1,14 @@
 # PHP web portal connected with X3 orders via SOAP web service
 
+## Training WS level 1
+
+It is the corrected exercice 1 + 2
+
 ## Objectives
 
-From a single portal php how can we use the X3 SOAP web service sales orders for reading and writing into Sage X3 ?
+From a single portal php how can we use the X3 SOAP web service 
+* sales orders for reading and writing into Sage X3
+* products     for reading
 
 ## Documentation
 
@@ -10,13 +16,20 @@ From a single portal php how can we use the X3 SOAP web service sales orders for
 	
 * [Howto md](https://github.com/Sage-ERP-X3/sample-x3-ws-php-webportal/blob/master/doc/md/Create_a_WebPortal_SageX3_WebServices.md).
 
+## Setup X3
+
+* Install patch X3 SRC_SVG_WEB_PHP_YYYYMMDD_NN from PATCX3
+* Create manually the web service YOITM (object ITM)
+* Publish the web services YOSOH and YITM
+	
+
 ## Features
 
 * Only php source with EDI Eclipse php Luna
 
 * No X3 sources
 
-* The name of X3 webservice used is YOSOH (object SOH)
+* The name of X3 webservice used are YOSOH (object SOH) and YOITM (object OITM)
 
 ## Remarks
 
