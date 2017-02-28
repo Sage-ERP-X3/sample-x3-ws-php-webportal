@@ -1,4 +1,4 @@
-# PHP web portal connected with X3 orders via SOAP web service
+# PHP web portal connected with X3
 
 ## Training WS level 1
 
