@@ -36,6 +36,7 @@
 					<ul class="dropdown-menu" role="menu">
 
 						<li><a href="page_itm_list.php">List of products</a></li>
+						<li><a href="page_stock_list.php">Available stock</a></li>
 						
 					</ul>
 				</li>
