@@ -205,13 +205,13 @@ POOL\_ALIAS
 
 class Config {
 
-public static $WSDL = "http://x3pu9trainvm:8124/soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl";
+public static $WSDL = "...";
 
 public static $CODE\_LANG = "ENG";
 
-public static $CODE\_USER = "admin";
+public static $CODE\_USER = "...";
 
-public static $PASSWORD = "admin";
+public static $PASSWORD = "...";
 
 public static $POOL\_ALIAS = "SEED";
 
@@ -219,9 +219,9 @@ public static $REQUEST\_CONFIG = "adxwss.optreturn=XML";
 
 public static $WS\_ORDER = "YOSOH";
 
-public static $WEB\_SITE\_LOGIN = "websage";
+public static $WEB\_SITE\_LOGIN = "...";
 
-public static $WEB\_SITE\_PASSWD = "websage";
+public static $WEB\_SITE\_PASSWD = "...";
 
 }
 
