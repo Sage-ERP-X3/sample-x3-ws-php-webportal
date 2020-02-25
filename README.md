@@ -15,7 +15,7 @@ From a single portal php how can we use the X3 SOAP web service sales orders for
 
 ## Features
 
-* Only php source with Eclipse IDE for PHP Developers. Version 2018-09 (4.9.0)
+* PHP source with Eclipse IDE for PHP Developers.
 
 * No X3 sources
 
