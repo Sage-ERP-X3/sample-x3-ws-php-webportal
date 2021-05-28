@@ -8,10 +8,10 @@
 <title>Connection</title>
 </head>
 
-<body role="document">
+<body role="document" >
 	<?php include("includes/menu_home.php"); ?>
 	
-	<header>
+	<header style="border-bottom: 10px solid #00e14b;">
 		<div class="container">
 			<div class="intro-text">
 				<div class="intro-heading">Connection</div>

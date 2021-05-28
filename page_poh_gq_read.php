@@ -16,7 +16,7 @@
 		<div class="container">
 			<div class="intro-text">
 				<div class="intro-heading">Read a X3 order</div>
-				<div class="intro-lead-in">Read a X3 order via the Object web service</div>
+				<div class="intro-lead-in">Read a X3 order via GraphQL api</div>
 
 			</div>
 
@@ -27,15 +27,15 @@
 		<div class="bs-component">
 			<div class="row">
 				<div class="col-lg-9 col-md-5 col-sm-3">
-					<form class="form-horizontal" action="page_soh_read.php"
+					<form class="form-horizontal" action="page_poh_gq_read.php"
 						method="post">
 						<fieldset>
 							<legend>Selection</legend>
 							<div class="form-group">
-								<label for="formsohnum" class="col-lg-4 control-label">Order number</label>
+								<label for="formordnum" class="col-lg-4 control-label">Order number</label>
 								<div class="col-lg-5">
-									<input type="text" class="form-control" id="formsohnum"
-										name="formsohnum" placeholder="">
+									<input type="text" class="form-control" id="formordnum"
+										name="formordnum" placeholder="">
 								</div>
 							</div>
 
@@ -52,28 +52,22 @@
 
 			<div class="row">
 				<div class="col-lg-12 col-md-7 col-sm-5 text-center">
-					<h2 class="section-heading">Result</h2>
+					<h2 class="section-heading">Purchase order details</h2>
 
 							
 									<?php
 									
-									require_once ('WebService/models/Order.php');
-									if (isset ( $_POST ["formsohnum"] )) {
-										$sohnum = $_POST ['formsohnum'];
-										try {
-											$order = new Order ();
-											echo ($order->showOne ( $sohnum ));
-										} catch ( SoapFault $e ) {
-											ToolsWS::printError ( "X3 Web service not available" );
-										}
-									} elseif (isset ( $_GET ["sohnum"] )) {
-										$sohnum = $_GET ['sohnum'];
-										try {
-											$order = new Order ();
-											echo ($order->showOne ( $sohnum ));
-										} catch ( SoapFault $e ) {
-											ToolsWS::printError ( "X3 Web service not available" );
-										}
+									require_once ('GraphQL/PurchaseOrder.php');
+									if (isset ( $_POST ["formordnum"] )) {
+										$ordnum = $_POST ['formordnum'];
+										$order = new PurchaseOrder ();
+										echo ($order->showOne ( $ordnum ));
+										
+									} elseif (isset ( $_GET ["_id"] )) {
+										$ordnum = $_GET ['_id'];
+										$order = new PurchaseOrder ();
+										echo ($order->showOne ( $ordnum ));
+										
 									}
 									
 									?>
@@ -93,8 +87,8 @@
   // $('#balise') marche.
   		  var isConnect = '<?PHP echo $isConnect;?>';
     	  set_icon_connect(isConnect);
-          $val = $('#sohnum').attr('placeholder');
-    	  $('#formsohnum').attr('value',$val);
+          $val = $('#ordnum').attr('placeholder');
+    	  $('#formordnum').attr('value',$val);
 		  	
     	  
     	 

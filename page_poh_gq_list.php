@@ -6,7 +6,7 @@
 
 <?php include("includes/head.php"); ?>
 
-<title>List of X3 products</title>
+<title>List of X3 orders</title>
 </head>
 <body role="document">
     <?php include("includes/menu_home.php"); ?>
@@ -14,8 +14,8 @@
 <header style="border-bottom: 10px solid #00e14b;">
 		<div class="container">
 			<div class="intro-text">
-				<div class="intro-heading">List of products</div>
-				<div class="intro-lead-in">Simulates the left list of X3 products</div>
+				<div class="intro-heading">List of X3 orders</div>
+				<div class="intro-lead-in">Use the GraphQL api</div>
 
 			</div>
 
@@ -30,17 +30,14 @@
 		<div class="bs-component">
 			<div class="row">
 				<div class="col-lg-12 col-md-7 col-sm-5 text-center">
-					<h2 class="section-heading">Result</h2>
+					<h2 class="section-heading">My purchase orders list</h2>
 
 																				
 									<?php
-									require_once ('WebService/models/Product.php');
-									try {
-										$product = new Product ();
-										echo ($product->showListe ());
-									} catch ( SoapFault $e ) {
-									ToolsWS::printError ( "X3 Web service not available" );
-									}
+									require_once ('GraphQL/PurchaseOrder.php');
+									
+										$order = new PurchaseOrder ();
+										echo ($order->showListe ());
 									?>
 								
 						

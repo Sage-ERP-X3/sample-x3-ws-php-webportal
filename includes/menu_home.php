@@ -8,24 +8,37 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand page-scroll" href="#page-top">Sage X3</a>
+			<!--<a class="navbar-brand page-scroll" href="#page-top">Sagee X3</a>-->
+			<a href="#page-top" style="text-decoration: none;"><img src="img/sage-logo.png" style="margin: 0px 5px 10px 0px;" alt="Sage X3" width="86px" height=""><span style="font-family: Helvetica, Arial, sans-serif; color: #bfbfbf; font-size: 28px; text-decoration: none;"> | X3</span></a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right ">
-				<li class=""><a class="page-scroll" href="index.php">Home</a></li>
+				<li class=""><a style="page-scroll" href="index.php">Home</a></li>
 				<li class=""><a class="page-scroll" href="connexion.php">Connection</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-expanded="false">Orders X3
+					data-toggle="dropdown" role="button" aria-expanded="false">X3 Sales
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
 
-						<li><a href="page_soh_list.php">List of orders</a></li>
-						<li><a href="page_soh_read.php">Read an order</a></li>
+						<li><a href="page_soh_list.php" style="text-transform: none; text-align: right;">List of orders</a></li>
+						<li><a href="page_soh_read.php" style="text-transform: none; text-align: right;">Read an order</a></li>
 						<li class="divider"></li>
-						<li><a href="page_soh_create.php">Create an order</a></li>
+						<li><a href="page_soh_create.php" style="text-transform: none; text-align: right;">Create an order</a></li>
+					</ul>
+				</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-expanded="false">X3 purchasing
+						<span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu" role="menu">
+
+						<li><a href="page_poh_gq_list.php">List of orders</a></li>
+						<li><a href="page_poh_gq_read.php">Read an order</a></li>
+						<!--li class="divider"></li>
+						<li><a href="page_soh_create.php">Create an order</a></li-->
 					</ul>
 				</li>
 				
@@ -35,8 +48,8 @@
 				</a>
 					<ul class="dropdown-menu" role="menu">
 
-						<li><a href="page_itm_list.php">List of products</a></li>
-						<li><a href="page_stock_list.php">Available stock</a></li>
+						<li><a href="page_itm_list.php" style="text-transform: none; text-align: right;">List of products</a></li>
+						<li><a href="page_stock_list.php" style="text-transform: none; text-align: right;">Available stock</a></li>
 						
 					</ul>
 				</li>
