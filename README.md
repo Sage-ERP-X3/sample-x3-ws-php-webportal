@@ -25,8 +25,8 @@ which uses __X3 web services__ and __GraphQL api__.
 
 ## Setup X3
 
-* Install patch X3 SRC_SVG_WEB_PHP_YYYYMMDD_NN from PATCX3
-* Create manually the web service YOITM (object ITM)
+* Unzip V12.zip in X3/PATCH_X3
+* Install patch X3 SRC_SVG_WEB_PHP_YYYYMMDD_NN from X3/PATCH_X3/V12
 * Publish the web services YOSOH, YOITM and YSTOCK_LOT
 	
 
