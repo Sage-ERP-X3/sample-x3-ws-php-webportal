@@ -266,8 +266,8 @@ class PurchaseOrder extends ModelGraphQLX3 {
 	*/
 	function showListe() {
 
-		$queryGraphQL = '{"query":"{\\r\\n  xtremX3Purchasing {\\r\\n    purchaseOrder {\\r\\n      query (first:50,filter:\\"[{orderFromSupplier:{_id:\'CN001\'}},{_id:{_regex:\'.*5\'}}]\\",orderBy:\\"{purchaseSite:{_id:-1}}\\"){\\r\\n        edges {\\r\\n          node {\\r\\n            _id\\r\\n            purchaseSite {\\r\\n              name\\r\\n              _id\\r\\n            }\\r\\n            receiptSite {\\r\\n              name\\r\\n            }\\r\\n            orderFromSupplier {\\r\\n              code\\r\\n            }\\r\\n            internalOrderReference\\r\\n            receiptStatus\\r\\n            signatureStatus\\r\\n            isClosed\\r\\n          }\\r\\n        }\\r\\n      }\\r\\n    }\\r\\n  }\\r\\n}","variables":{}}';
-
+		$queryGraphQL = '{"query":"{\\r\\n  xtremX3Purchasing {\\r\\n    purchaseOrder {\\r\\n      query (first:50,filter:\\"[{orderFromSupplier:{_id:\'CN001\'}}]\\",orderBy:\\"{purchaseSite:{_id:-1}}\\"){\\r\\n        edges {\\r\\n          node {\\r\\n            _id\\r\\n            purchaseSite {\\r\\n              name\\r\\n              _id\\r\\n            }\\r\\n            receiptSite {\\r\\n              name\\r\\n            }\\r\\n            orderFromSupplier {\\r\\n              code\\r\\n            }\\r\\n            internalOrderReference\\r\\n            receiptStatus\\r\\n            signatureStatus\\r\\n            isClosed\\r\\n          }\\r\\n        }\\r\\n      }\\r\\n    }\\r\\n  }\\r\\n}","variables":{}}';
+		
 		$response=$this->query($queryGraphQL);
 		$json=json_decode($response);
 
