@@ -1,17 +1,20 @@
 <?php
 
 require_once ('config/Config.php');
+require_once ('authentication/JWT/TokenJWT.php');
+
 class ModelGraphQLX3 {
-	
+	private $jwt;
 	function __construct() {
-		
+		$this->jwt   = new TokenJWT ();
+        //var_dump($jwt);
 	}
 	
 	
 	public function query($queryGraphQL) {
 
         $curl = curl_init();
-
+        $token = $this->jwt->getToken();    
         curl_setopt_array($curl, array(
             CURLOPT_URL => Config::$GQL_SERVER,
             CURLOPT_RETURNTRANSFER => true,
@@ -23,7 +26,8 @@ class ModelGraphQLX3 {
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS =>$queryGraphQL,
             CURLOPT_HTTPHEADER => array(
-	            "authorization: Basic ". base64_encode(Config::$GQL_USER.":".Config::$GQL_PASSWORD),
+	            //"authorization: Basic ". base64_encode(Config::$GQL_USER.":".Config::$GQL_PASSWORD),
+                "Authorization: Bearer ". $token,
 	            "content-type: application/json"
 	
             ),

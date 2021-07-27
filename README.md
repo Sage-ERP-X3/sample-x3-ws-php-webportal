@@ -15,6 +15,11 @@ which uses __X3 web services__ and __GraphQL api__.
  * Products     for reading (List and Detail) 
  * Available Stock
 
+# Using New authentication __Connected applications__
+ 
+ * No more authentication in __basic HTTP__
+ * Use of Standard __JSON Web Tokens__ (JWT)
+
 ## Using Sage GraphQL api
 
  * Purchasing orders ( List and Detail)

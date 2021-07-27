@@ -1,7 +1,7 @@
 <?php
 require_once ('WebService/modelWS/ModelWS.php');
-// require_once('../../config/Config.php');
 require_once ('config/Config.php');
+require_once ('authentication/JWT/TokenJWT.php');
 class ModelX3 {
 	public $soapClient;
 	/*
@@ -14,22 +14,26 @@ class ModelX3 {
 	 * );
 	 */
 	private $callContext = array ();
+	private $jwt;
 	function __construct() {
+		$jwt   = new TokenJWT ();
+		$token = $jwt->getToken();
 		$wsdl = Config::$WSDL;
-		// $options = array();
-		// foreach($this->classmap as $key => $value) {
-		// $options['classmap'][$key] = $value;
-		// }
-		
 		$optionsAuth = Array (
 				'cache_wsdl' => WSDL_CACHE_NONE,
-				'login' => Config::$CODE_USER,
-				'password' => Config::$PASSWORD,
-				'trace' => 0 
+				//'login' => Config::$CODE_USER,
+				//'password' => Config::$PASSWORD,
+				'trace' => 1 ,
+				'stream_context' => stream_context_create(array(
+					'http' => array(
+						'header' => 'Authorization: Bearer '.$token
+					),
+				))
 		);
-		$this->soapClient = new SoapClient ( $wsdl, $optionsAuth );
+		$this->soapClient = new SoapClient ( $wsdl, $optionsAuth);
 		// $this->callContext = array('codeLang'=>Config::$CODE_LANG, 'codeUser'=>Config::$CODE_USER, 'password'=>Config::$PASSWORD, 'poolAlias'=>Config::$POOL_ALIAS, 'requestConfig'=>Config::$REQUEST_CONFIG);
 		// codeUser and password had deleted in the class CAdxCallContext
+		
 		$this->callContext = array (
 				'codeLang' => Config::$CODE_LANG,
 				'poolAlias' => Config::$POOL_ALIAS,
@@ -126,7 +130,9 @@ class ModelX3 {
 		), array (
 				'uri' => 'http://www.adonix.com/WSS',
 				'soapaction' => '' 
-		) );
+		) 
+	);
+	
 	}
 	
 	/**

@@ -39,6 +39,7 @@
 										$order = new Order ();
 										echo ($order->showListe ());
 									} catch ( SoapFault $e ) {
+										//echo($e);
 									ToolsWS::printError ( "X3 Web service not available" );
 									}
 									?>

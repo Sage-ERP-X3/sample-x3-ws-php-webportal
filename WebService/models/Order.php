@@ -128,6 +128,8 @@ class Order extends ModelX3 {
 	function showListe() {
 		$WS = "*";	
 		$this->CAdxResultXml = $this->query ( Config::$WS_ORDER, $WS, 100 );
+
+		var_dump($this->soapClient->__getLastRequestHeaders());
 		$result = $this->CAdxResultXml->resultXml;
 		// $result contient le fichier XML des réponses
 		$dom = new DomDocument ();

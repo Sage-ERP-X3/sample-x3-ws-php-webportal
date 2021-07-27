@@ -32,7 +32,6 @@
 				<div class="col-lg-12 col-md-7 col-sm-5 text-center">
 					<h2 class="section-heading">My purchase orders list</h2>
 
-																				
 									<?php
 									require_once ('GraphQL/PurchaseOrder.php');
 									
@@ -40,7 +39,6 @@
 										echo ($order->showListe ());
 									?>
 								
-						
 				</div>
 			</div>
 		</div>
