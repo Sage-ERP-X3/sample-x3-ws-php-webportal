@@ -28,7 +28,8 @@ class ModelGraphQLX3 {
             CURLOPT_HTTPHEADER => array(
 	            //"authorization: Basic ". base64_encode(Config::$GQL_USER.":".Config::$GQL_PASSWORD),
                 "Authorization: Bearer ". $token,
-	            "content-type: application/json"
+	            "content-type: application/json",
+                "x-xtrem-endpoint: ".Config::$GQL_ENDPOINT
 	
             ),
         ));

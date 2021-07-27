@@ -4,7 +4,7 @@ class Config {
 	/*
 	 	Config SOAP Web services X3 
 	*/
-	public static $WSDL            	= "http://.../soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl";
+	public static $WSDL            	= "http:.../soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl";
 	public static $CODE_LANG       	= "ENG";
 	public static $POOL_ALIAS      	= "...";
 	public static $REQUEST_CONFIG  	= "adxwss.optreturn=XML";
@@ -16,7 +16,8 @@ class Config {
 	 	Config GraphQL X3
 	*/
 
-	public static $GQL_SERVER 	= "http://.../xtrem/api";
+	public static $GQL_SERVER 	    = "http://.../xtrem/api";
+	public static $GQL_ENDPOINT 	= "...";
 
 	/*
 	 	Config PHP Web Portal
