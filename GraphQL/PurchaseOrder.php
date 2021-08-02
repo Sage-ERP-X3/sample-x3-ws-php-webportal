@@ -4,8 +4,8 @@ require_once ('ModelGraphQLX3.php');
 
 class PurchaseOrder extends ModelGraphQLX3 {
 	function showOne($_id) {
-
-		$queryGraphQL = '{"query":"{\\r\\n  xtremX3Purchasing {\\r\\n    purchaseOrder {\\r\\n      read(_id: \\"'.$_id.'\\") {\\r\\n        _id\\r\\n        purchaseSite {\\r\\n          name\\r\\n          _id\\r\\n        }\\r\\n        receiptSite {\\r\\n          name\\r\\n        }\\r\\n        orderFromSupplier {\\r\\n          code\\r\\n        }\\r\\n        internalOrderReference\\r\\n        receiptStatus\\r\\n        signatureStatus\\r\\n        isClosed\\r\\n        _createStamp\\r\\n        _updateStamp\\r\\n        purchaseOrderQuantityLines {\\r\\n          query {\\r\\n            edges {\\r\\n              node {\\r\\n                lineNumber\\r\\n                product {\\r\\n                  code\\r\\n                  description1\\r\\n                }\\r\\n                quantityInOrderUnitOrdered\\r\\n                quantityInStockUnitReceived\\r\\n                orderUnit {\\r\\n                  code\\r\\n                }\\r\\n              }\\r\\n            }\\r\\n          }\\r\\n        }\\r\\n      }\\r\\n    }\\r\\n  }\\r\\n}\\r\\n","variables":{}}';
+		$queryGraphQL=$this->readFileGraphQl('PurchaseOrder_read.graphql');
+		$queryGraphQL=str_replace("%<_id>%",$_id,$queryGraphQL);
 		//echo($queryGraphQL);
 		$response=$this->query($queryGraphQL);
 		$json=json_decode($response);
@@ -28,7 +28,7 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
 		$str .= "<label class='control-label' for='disabledInput'>Purchase site</label>";
 		$str .= "<input class='form-control' type='text' placeholder='";
-		$str .= $read->{'purchaseSite'}->{'name'}." - ".$read->{'purchaseSite'}->{'name'};
+		$str .= $read->{'purchaseSite'}->{'_id'}." - ".$read->{'purchaseSite'}->{'name'};
 		$str .= "' disabled >";
 		$str .= "</div>";
 
@@ -47,9 +47,9 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		$str .= "</div>";
 
 		$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
-		$str .= "<label class='control-label' for='disabledInput'>Internal Order Reference</label>";
+		$str .= "<label class='control-label' for='disabledInput'>Receipt status</label>";
 		$str .= "<input class='form-control' type='text' placeholder='";
-		$str .= $read->{'internalOrderReference'};
+		$str .= $read->{'receiptStatus'};
 		$str .= "' disabled >";
 		$str .= "</div>";
 
@@ -95,9 +95,22 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		return $str;
 	}
 	
-	function showListe() {
-
-		$queryGraphQL = '{"query":"{\\r\\n  xtremX3Purchasing {\\r\\n    purchaseOrder {\\r\\n      query (first:50,filter:\\"[{orderFromSupplier:{_id:\'CN001\'}}]\\",orderBy:\\"{purchaseSite:{_id:-1}}\\"){\\r\\n        edges {\\r\\n          node {\\r\\n            _id\\r\\n            purchaseSite {\\r\\n              name\\r\\n              _id\\r\\n            }\\r\\n            receiptSite {\\r\\n              name\\r\\n            }\\r\\n            orderFromSupplier {\\r\\n              code\\r\\n            }\\r\\n            internalOrderReference\\r\\n            receiptStatus\\r\\n            signatureStatus\\r\\n            isClosed\\r\\n          }\\r\\n        }\\r\\n      }\\r\\n    }\\r\\n  }\\r\\n}","variables":{}}';
+	function showList( $businessPartnerId='', $receiptStatus='' ) {
+		
+		$queryGraphQL=$this->readFileGraphQl('PurchaseOrder_query.graphql');
+		$filterBusinessPartnerId='{}';
+		
+		if ($businessPartnerId!='') {
+		 $filterBusinessPartnerId='{_id:\''.$businessPartnerId.'\'}';
+		}
+		$filterReceiptStatus='{}';
+		
+		if ($receiptStatus!='') {
+		 $filterReceiptStatus='{receiptStatus:\''.$receiptStatus.'\'}';
+		}
+		
+		$queryGraphQL=(str_replace("%<orderFromSupplier>%",$filterBusinessPartnerId,$queryGraphQL));
+		$queryGraphQL=(str_replace("%<receiptStatus>%",$filterReceiptStatus,$queryGraphQL));
 		
 		$response=$this->query($queryGraphQL);
 		$json=json_decode($response);
@@ -134,7 +147,7 @@ class PurchaseOrder extends ModelGraphQLX3 {
 			return $str;
 
 	}
-
+	
 	function create($WS) {
 		$this->CAdxResultXml = $this->save ( Config::$WS_ORDER, $WS );
 		$adxResultXml = $this->CAdxResultXml;

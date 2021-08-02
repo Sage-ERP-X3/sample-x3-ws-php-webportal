@@ -1,0 +1,27 @@
+{
+  xtremX3Purchasing {
+    purchaseOrder {
+      query (first:50,filter:"[{orderFromSupplier:%<orderFromSupplier>%},%<receiptStatus>%]",orderBy:"{purchaseSite:{_id:-1}}"){
+        edges {
+          node {
+            _id
+            purchaseSite {
+              name
+              _id
+            }
+            receiptSite {
+              name
+            }
+            orderFromSupplier {
+              code
+            }
+            internalOrderReference
+            receiptStatus
+            signatureStatus
+            isClosed
+          }
+        }
+      }
+    }
+  }
+}

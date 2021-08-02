@@ -23,20 +23,65 @@
 	</header>
 
 	<div class="container">
-
-
-
-
 		<div class="bs-component">
+		<div class="row">
+				<div class="col-lg-9 col-md-5 col-sm-3">
+					<form class="form-horizontal" action="page_poh_gq_list.php"
+						method="post">
+						<fieldset>
+							<legend>Selection</legend>
+							<div class="form-group">
+								<label for="formbusinesspartnerid" class="col-lg-4 control-label">Business partner id</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" id="formbusinesspartnerid"
+										name="formbusinesspartnerid" placeholder="">
+								</div>
+							</div>
+							<div class="form-group" class="col-lg-4 control-label">
+								<label for="formreceiptstatus" class="col-lg-4 control-label">Receipt status</label>
+								<div class="col-lg-5">
+									<select class="form-control" id="formreceiptstatus" name="formreceiptstatus">
+										<option value="">No filter</option>
+										<option value="no">No</option>
+										<option value="partly">Partly</option>
+										<option value="completely">Completely</option>
+										<option value="notManaged">Not managed</option>
+										<option value="yesAutomatic">Yes automatic</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-10 col-lg-offset-2">
+									<button type="reset" class="btn btn-default">Cancel</button>
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-lg-12 col-md-7 col-sm-5 text-center">
 					<h2 class="section-heading">My purchase orders list</h2>
 
+									
 									<?php
 									require_once ('GraphQL/PurchaseOrder.php');
-									
+									if (isset ( $_POST ["formbusinesspartnerid"] )) {
+										$businesspartnerid = $_POST ['formbusinesspartnerid'];
+										$receiptstatus = $_POST ['formreceiptstatus'];
 										$order = new PurchaseOrder ();
-										echo ($order->showListe ());
+										
+										echo ($order->showList ( $businesspartnerid, $receiptstatus ));
+										
+									} else {
+										$order = new PurchaseOrder ();
+										// No filter
+										echo ($order->showList ());
+									}
+										
+								
+									
 									?>
 								
 				</div>
@@ -52,7 +97,9 @@
   // $('#balise') marche.
   		set_icon_connect();var isConnect = '<?PHP echo $isConnect;?>';
   	    set_icon_connect(isConnect);
-  
+		//$val = $('#businesspartnerid').attr('placeholder');
+    	//$('#formbusinesspartnerid').attr('value',$val);
+
     	  
     	 
 });

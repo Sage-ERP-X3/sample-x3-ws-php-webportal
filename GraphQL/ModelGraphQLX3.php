@@ -12,7 +12,6 @@ class ModelGraphQLX3 {
 	
 	
 	public function query($queryGraphQL) {
-
         $curl = curl_init();
         $token = $this->jwt->getToken();    
         curl_setopt_array($curl, array(
@@ -24,7 +23,7 @@ class ModelGraphQLX3 {
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS =>$queryGraphQL,
+            CURLOPT_POSTFIELDS =>'{"query":"'.$queryGraphQL.'","variables":{}}',
             CURLOPT_HTTPHEADER => array(
 	            //"authorization: Basic ". base64_encode(Config::$GQL_USER.":".Config::$GQL_PASSWORD),
                 "Authorization: Bearer ". $token,
@@ -40,7 +39,16 @@ class ModelGraphQLX3 {
 		return $response;
 	}
 	
-	
+	public function readFileGraphQl($fileInput) {
+        $file='GraphQL/'.$fileInput;
+		$fileOpen = fopen($file, 'r');
+		
+        $queryGraphQL=fread($fileOpen, filesize($file));
+		fclose($fileOpen);
+		$queryGraphQL = str_replace("\r\n","",$queryGraphQL);
+		$queryGraphQL = str_replace('"','\"',$queryGraphQL);
+        return $queryGraphQL;
+    }
 }
 ?>
 
