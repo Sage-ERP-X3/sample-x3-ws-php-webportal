@@ -1,18 +1,25 @@
 <?php
 require_once ('config/Config.php');
 require_once ('ModelGraphQLX3.php');
+require_once ('WebService/modelWS/ToolsWS.php');
 
 class PurchaseOrder extends ModelGraphQLX3 {
-	function showOne($_id) {
+	function showOneDetailOrder($_id) {
 		$queryGraphQL=$this->readFileGraphQl('PurchaseOrder_read.graphql');
 		$queryGraphQL=str_replace("%<_id>%",$_id,$queryGraphQL);
 		//echo($queryGraphQL);
+		
 		$response=$this->query($queryGraphQL);
+		//var_dump($response);
 		$json=json_decode($response);
 
-		//var_dump($json);
+		
 		$read = $json->{'data'}->{'xtremX3Purchasing'}->{'purchaseOrder'}->{'read'};
-        
+        //var_dump($read);
+
+		if (is_null($read)) {
+			return ToolsWS::getSucces ( "No result" );
+		}
 		$str = "";
 		// header
 		$str .= "<div class='row'>";
@@ -26,17 +33,17 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		$str .= "</div>";
 
 		$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
-		$str .= "<label class='control-label' for='disabledInput'>Purchase site</label>";
-		$str .= "<input class='form-control' type='text' placeholder='";
-		$str .= $read->{'purchaseSite'}->{'_id'}." - ".$read->{'purchaseSite'}->{'name'};
-		$str .= "' disabled >";
+		$str .= "<label class='control-label' for='formpurshasesite'>Purchase site</label>";
+		$str .= "<input class='form-control' name='formpurshasesite' type='text' placeholder='' value='";
+		$str .= $read->{'purchaseSite'}->{'_id'};// - ".$read->{'purchaseSite'}->{'name'};
+		$str .= "' readonly >";
 		$str .= "</div>";
 
 		$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
-		$str .= "<label class='control-label' for='disabledInput'>Supplier</label>";
-		$str .= "<input class='form-control' type='text' placeholder='";
-		$str .= $read->{'orderFromSupplier'}->{'code'}." - ".$read->{'purchaseSite'}->{'name'};
-		$str .= "' disabled >";
+		$str .= "<label class='control-label' for='formsupplier'>Supplier</label>";
+		$str .= "<input class='form-control' name='formsupplier' type='text' placeholder='' value='";
+		$str .= $read->{'orderFromSupplier'}->{'code'};
+		$str .= "' readonly >";
 		$str .= "</div>";
 
 		$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
@@ -58,17 +65,21 @@ class PurchaseOrder extends ModelGraphQLX3 {
 
 		// Lines
 		$str .= "<table class='table table-striped table-bordered table-condensed'>";
-		$str .= "<thead><tr><th>Line number</th><th>Product</th><th>Description</th><th>Quantity order</th><th>Quantity received</th><th>Order unit</th></tr></thead><tbody>";
+		$str .= "<thead><tr><th>Line number</th><th>Product</th><th>Description</th><th>Quantity order</th><th>Quantity received</th><th>Order unit</th><th>Quantity to receive</th></tr></thead><tbody>";
 		$edges = $read->{'purchaseOrderQuantityLines'}->{'query'}->{'edges'};
 		foreach ( $edges as $edge ) {
 			$str .= "<tr>";
 
 			$str .= "<td>";
+			$str .= '<input type="text" class="form-control" name="formtablinenumber[]" value="';
 			$str .= $edge->{'node'}->{'lineNumber'};
+			$str .= '" readonly>';
 			$str .= "</td>";
 			
 			$str .= "<td>";
+			$str .= '<input type="text" class="form-control" name="formtabproduct[]" value="';
 			$str .= $edge->{'node'}->{'product'}->{'code'};
+			$str .= '" readonly>';
 			$str .= "</td>";
 
 			$str .= "<td>";
@@ -84,9 +95,58 @@ class PurchaseOrder extends ModelGraphQLX3 {
 			$str .= "</td>";
 
 			$str .= "<td>";
+			$str .= '<input type="text" class="form-control" name="formtaborderunit[]" value="';
 			$str .= $edge->{'node'}->{'orderUnit'}->{'code'};
+			$str .= '" readonly>';
 			$str .= "</td>";
 			
+			// enter quantity
+			$str .= "<td>";
+			$str .= '<input type="text" class="form-control" name="formtabqtytoreceive[]" placeholder="0" value="0">';
+			$str .= "</td>";
+
+			$str .= "</tr>";
+		}
+		$str .= "</tbody></table>";
+		$str .= "</div>";
+
+		return $str;
+	}
+	function showOneListRecept($_id) {
+		$queryGraphQL=$this->readFileGraphQl('PurchaseReceipt_query_1.graphql');
+		$queryGraphQL=str_replace("%<purchaseOrder>%","'".$_id."'",$queryGraphQL);
+		//var_dump($queryGraphQL);
+		$response=$this->query($queryGraphQL);
+		$json=json_decode($response);
+
+		//var_dump($json);
+		$query = $json->{'data'}->{'xtremX3Purchasing'}->{'purchaseReceipt'}->{'query'};
+        
+		$str = "";
+		
+		// Lines
+		$str .= "<table class='table table-striped table-bordered table-condensed'>";
+		$str .= "<thead><tr><th>Receipt date</th><th>Receipt</th><th>Receipt site</th><th>Supplier</th></tr></thead><tbody>";
+		$edges = $query->{'edges'};
+		foreach ( $edges as $edge ) {
+			$str .= "<tr>";
+
+			$str .= "<td>";
+			$str .= $edge->{'node'}->{'receiptDate'};
+			$str .= "</td>";
+
+			$str .= "<td>";
+			$str .= $edge->{'node'}->{'id'};
+			$str .= "</td>";
+			
+			$str .= "<td>";
+			$str .= $edge->{'node'}->{'receiptSite'}->{'_id'}." - ".$edge->{'node'}->{'receiptSite'}->{'name'};
+			$str .= "</td>";
+
+			$str .= "<td>";
+			$str .= $edge->{'node'}->{'supplier'}->{'_id'};
+			$str .= "</td>";
+
 			$str .= "</tr>";
 		}
 		$str .= "</tbody></table>";
@@ -95,24 +155,30 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		return $str;
 	}
 	
-	function showList( $businessPartnerId='', $receiptStatus='' ) {
+	function showList( $businessPartnerId='', $purchaseSite='', $receiptStatus='' ) {
 		
 		$queryGraphQL=$this->readFileGraphQl('PurchaseOrder_query.graphql');
-		$filterBusinessPartnerId='{}';
 		
+		$filterBusinessPartnerId='{}';
 		if ($businessPartnerId!='') {
 		 $filterBusinessPartnerId='{_id:\''.$businessPartnerId.'\'}';
 		}
-		$filterReceiptStatus='{}';
 		
+		$filterPurchaseSite='{}';
+		if ($purchaseSite!='') {
+		 $filterPurchaseSite='{_id:\''.$purchaseSite.'\'}';
+		}
+		$filterReceiptStatus='{}';
 		if ($receiptStatus!='') {
 		 $filterReceiptStatus='{receiptStatus:\''.$receiptStatus.'\'}';
 		}
 		
 		$queryGraphQL=(str_replace("%<orderFromSupplier>%",$filterBusinessPartnerId,$queryGraphQL));
+		$queryGraphQL=(str_replace("%<purchaseSite>%",$filterPurchaseSite,$queryGraphQL));
 		$queryGraphQL=(str_replace("%<receiptStatus>%",$filterReceiptStatus,$queryGraphQL));
-		
+		//var_dump($queryGraphQL);
 		$response=$this->query($queryGraphQL);
+		//var_dump($response);
 		$json=json_decode($response);
 
 		//var_dump($json);
@@ -148,7 +214,7 @@ class PurchaseOrder extends ModelGraphQLX3 {
 
 	}
 	
-	function create($WS) {
+	/*function create($WS) {
 		$this->CAdxResultXml = $this->save ( Config::$WS_ORDER, $WS );
 		$adxResultXml = $this->CAdxResultXml;
 		$ret="";
@@ -199,7 +265,7 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		}
 		return $ret;
 	}
-	
+	*/
 }
 
  ?>

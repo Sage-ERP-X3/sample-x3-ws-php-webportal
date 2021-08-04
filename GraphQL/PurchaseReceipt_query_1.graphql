@@ -1,0 +1,21 @@
+{
+  xtremX3Purchasing {
+    purchaseReceipt {
+      query(filter: "{lines:{_every:true,purchaseOrder:%<purchaseOrder>%}}", orderBy: "{id:-1}") {
+        edges {
+          node {
+            id
+            receiptSite {
+              _id
+              name
+            }
+            receiptDate
+            supplier {
+              _id
+            }
+          }
+        }
+      }
+    }
+  }
+}

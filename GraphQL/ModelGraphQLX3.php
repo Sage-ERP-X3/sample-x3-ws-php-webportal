@@ -39,14 +39,17 @@ class ModelGraphQLX3 {
 		return $response;
 	}
 	
-	public function readFileGraphQl($fileInput) {
+	public function readFileGraphQl($fileInput,$replace=true) {
         $file='GraphQL/'.$fileInput;
 		$fileOpen = fopen($file, 'r');
 		
         $queryGraphQL=fread($fileOpen, filesize($file));
 		fclose($fileOpen);
-		$queryGraphQL = str_replace("\r\n","",$queryGraphQL);
-		$queryGraphQL = str_replace('"','\"',$queryGraphQL);
+        if ($replace==true) {
+            $queryGraphQL = str_replace("\r\n","",$queryGraphQL);
+		    $queryGraphQL = str_replace('"','\"',$queryGraphQL);
+        }
+		
         return $queryGraphQL;
     }
 }

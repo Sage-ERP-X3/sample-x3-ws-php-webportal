@@ -1,0 +1,20 @@
+mutation {
+        xtremX3Purchasing {
+            purchaseReceipt {
+                create(data:
+                {
+                    receiptSite: "%<receiptSite>%",
+                    receiptDate: "%<receiptDate>%",
+                    supplier: "%<supplier>%",
+                    lines: [
+                        %<fragmentLines>%
+                    ]
+                })
+                {
+                    id
+                  
+                }
+            }
+        }
+    
+}

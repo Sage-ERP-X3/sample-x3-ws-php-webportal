@@ -22,13 +22,12 @@
 
 		</div>
 	</header>
-	<p />
+	
 	<div class="container">
 		<div class="bs-component">
 			<div class="row">
-				<div class="col-lg-9 col-md-5 col-sm-3">
-					<form class="form-horizontal" action="page_poh_gq_read.php"
-						method="post">
+			<div class="col-lg-12 col-md-7 col-sm-5">
+					<form class="form-horizontal" method="post" action=page_poh_gq_read.php>
 						<fieldset>
 							<legend>Selection</legend>
 							<div class="form-group">
@@ -42,41 +41,142 @@
 							<div class="form-group">
 								<div class="col-lg-10 col-lg-offset-2">
 									<button type="reset" class="btn btn-default">Cancel</button>
-									<button type="submit" class="btn btn-primary">Submit</button>
+									<button type="submit" name="read" class="btn btn-primary">Read</button>
+									<button type="submit" name="create_recept" class="btn btn-primary">Create recept</button>
 								</div>
 							</div>
+
 						</fieldset>
-					</form>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-12 col-md-7 col-sm-5 text-center">
-					<h2 class="section-heading">Purchase order details</h2>
-
+						
+						<h2 class="section-heading text-center">Purchase order details</h2>
+						<fieldset>
 							
-									<?php
-									
+							<?php
+									try {
 									require_once ('GraphQL/PurchaseOrder.php');
+									require_once ('GraphQL/PurchaseReceipt.php');
+									
 									if (isset ( $_POST ["formordnum"] )) {
 										$ordnum = $_POST ['formordnum'];
 										$order = new PurchaseOrder ();
-										echo ($order->showOne ( $ordnum ));
+										if (isset($_POST ["read"])) {
+											echo ($order->showOneDetailOrder ( $ordnum ));
+										} elseif (isset($_POST ["create_recept"])) {
+											//var_dump($_POST);
+											$receipt = new purchaseReceipt();
+										
+											$receiptSite=$_POST ["formpurshasesite"];
+											$receiptDate=date("Y-m-d");
+											$supplier=$_POST ["formsupplier"];
+											
+											$tabLineNumber = $_POST ["formtablinenumber"];
+											$tabProduct = $_POST ["formtabproduct"];
+											$tabBorderUnit = $_POST ["formtaborderunit"];
+											$tabQtyToReceive = $_POST ["formtabqtytoreceive"];
+											
+											$lines= '';
+											
+											//echo(count ( $tabLineNumber ));
+											for($i = 0; $i < count ( $tabLineNumber ); $i ++) {
+												if ($tabQtyToReceive[$i]>0) {
+												$s='';
+												$s .= '{';
+												$s .= ' receiptSite:"'.$receiptSite.'", ';
+												$s .= ' purchaseOrder:"'.$ordnum.'", ';
+												$s .= ' purchaseOrderLineNumber:"'.$tabLineNumber[$i].'", ';
+												$s .= ' product:"'.$tabProduct[$i].'", ';
+												$s .= ' receiptUnit:"'.$tabBorderUnit[$i].'", ';
+												$s .= ' quantityInReceiptUnitReceived:"'.$tabQtyToReceive[$i].'",';
+												//$s .= ' #_forMutationOnlyDoClosePurchaseOrderLine:2';
+												$s .= ' stockDetails: [';
+												$s .= ' {';
+												$s .= ' status: "A",';
+												$s .= ' packingUnit: "'.$tabBorderUnit[$i].'", ';
+												$s .= ' quantityInPackingUnit:"'.$tabQtyToReceive[$i].'" ';
+												$s .= ' }';
+												$s .= ' ]';
+												$s .= ' }';	
+												$lines.= $s;
+												//if ($i< count ( $tabLineNumber )-1) {
+													$lines.= ',';
+												//}
+											}
+											}
+											//echo($lines);
+											$receiptNum=$receipt->create ($ordnum,$receiptSite,$receiptDate,$supplier,$lines);
+											echo ($order->showOneDetailOrder ( $ordnum ));
+
+										}
+										
 										
 									} elseif (isset ( $_GET ["_id"] )) {
 										$ordnum = $_GET ['_id'];
 										$order = new PurchaseOrder ();
-										echo ($order->showOne ( $ordnum ));
+										//if (isset($_POST ["read"])) {
+											echo ($order->showOneDetailOrder ( $ordnum ));
+										//}
 										
 									}
-									
+									} catch (Exception $e) {
+										ToolsWS::printError ( $e );
+									}
 									?>
-								
-
-			
-
+						</fieldset>
+					</form>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-lg-5 col-md-3 col-sm-2">
+					
+				
+							
+									<?php
+									
+									//echo('<h2 class="section-heading">Receipt created</h2>');
+									
+											if (isset($receiptNum)) {
+												$receipt = new purchaseReceipt();
+												echo $receipt->display($receiptNum);
+											}
+											
+									?>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-7 col-sm-5 text-center">
+					
+					
+							
+									<?php
+									
+									echo('<h2 class="section-heading">List of Purchase receipts</h2>');
+									if (isset ( $_POST ["formordnum"] )) {
+										//echo ('ol1');
+										$ordnum = $_POST ['formordnum'];
+										$order = new PurchaseOrder ();
+										//if (isset($_POST ["read"]) || isset($_POST ["create_recept"])) {
+											
+											if ($ordnum!='')
+												echo ($order->showOneListRecept ( $ordnum ));
+										//}
+										
+										
+									} elseif (isset ( $_GET ["_id"] )) {
+										//echo ('ol2');
+										$ordnum = $_GET ['_id'];
+										$order = new PurchaseOrder ();
+										//if (isset($_POST ["read"])) {
+											echo ($order->showOneListRecept ( $ordnum ));
+										//}
+										
+									}
+									//echo ($order->showOneDetailOrder ( $ordnum ));
+									//echo ('ol3');
+									?>
+				</div>
+			</div>
+			
+			
 		</div>
 	
 <?php include("includes/end_body.php"); ?>
@@ -88,10 +188,16 @@
   		  var isConnect = '<?PHP echo $isConnect;?>';
     	  set_icon_connect(isConnect);
           $val = $('#ordnum').attr('placeholder');
-    	  $('#formordnum').attr('value',$val);
-		  	
-    	  
-    	 
+		  console.log("ol1",$val);
+
+		  if ($val===undefined) {
+			$val = '<?PHP if (isset($ordnum)) {echo $ordnum;}?>';
+			console.log("ol2",$val);
+			
+					  
+		}
+		$('#formordnum').val($val);
+		$('#formordnum').attr('value',$val);
 });
 
     </script>

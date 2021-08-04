@@ -37,12 +37,19 @@
 										name="formbusinesspartnerid" placeholder="">
 								</div>
 							</div>
+							<div class="form-group">
+								<label for="formpurchasesite" class="col-lg-4 control-label">Purchase site</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" id="formpurchasesite"
+										name="formpurchasesite" placeholder="">
+								</div>
+							</div>
 							<div class="form-group" class="col-lg-4 control-label">
 								<label for="formreceiptstatus" class="col-lg-4 control-label">Receipt status</label>
 								<div class="col-lg-5">
 									<select class="form-control" id="formreceiptstatus" name="formreceiptstatus">
 										<option value="">No filter</option>
-										<option value="no">No</option>
+										<option value="no" selected>No</option>
 										<option value="partly">Partly</option>
 										<option value="completely">Completely</option>
 										<option value="notManaged">Not managed</option>
@@ -69,18 +76,22 @@
 									require_once ('GraphQL/PurchaseOrder.php');
 									if (isset ( $_POST ["formbusinesspartnerid"] )) {
 										$businesspartnerid = $_POST ['formbusinesspartnerid'];
+										$purchasesite = $_POST ['formpurchasesite'];
 										$receiptstatus = $_POST ['formreceiptstatus'];
 										$order = new PurchaseOrder ();
 										
-										echo ($order->showList ( $businesspartnerid, $receiptstatus ));
 										
 									} else {
+										
 										$order = new PurchaseOrder ();
-										// No filter
-										echo ($order->showList ());
+										$businesspartnerid = '';
+										$purchasesite='';
+										$receiptstatus = '';
+										
 									}
 										
-								
+									echo ($order->showList ( $businesspartnerid, $purchasesite, $receiptstatus ));
+										
 									
 									?>
 								
@@ -95,11 +106,18 @@
       $(function(){
   // On peut accéder aux éléments.
   // $('#balise') marche.
-  		set_icon_connect();var isConnect = '<?PHP echo $isConnect;?>';
+  		set_icon_connect();
+		var isConnect = '<?PHP echo $isConnect;?>';
   	    set_icon_connect(isConnect);
-		//$val = $('#businesspartnerid').attr('placeholder');
-    	//$('#formbusinesspartnerid').attr('value',$val);
+		  
+		var $val = '<?PHP if (isset($businesspartnerid)) {echo $businesspartnerid;}?>';
+    	$('#formbusinesspartnerid').attr('value',$val);
 
+		$val = '<?PHP if (isset($receiptstatus)) {echo $receiptstatus;}?>';
+		$('#formreceiptstatus').val($val);
+		
+		$val = '<?PHP if (isset($purchasesite)) {echo $purchasesite;}?>';
+		$('#formpurchasesite').val($val);
     	  
     	 
 });
