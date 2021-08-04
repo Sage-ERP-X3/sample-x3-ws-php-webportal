@@ -23,7 +23,7 @@ which uses __X3 web services__ and __GraphQL api__.
 ## Using Sage GraphQL api
 
  * Purchasing orders ( List and Detail)
- * Purchasing receipts ( List, Detail an création)
+ * Purchasing receipts ( List, Detail and __Creation__)
 
 ## Use GraphQL queries
 
