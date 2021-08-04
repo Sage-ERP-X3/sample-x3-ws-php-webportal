@@ -115,7 +115,7 @@ class PurchaseOrder extends ModelGraphQLX3 {
 	function showOneListRecept($_id) {
 		$queryGraphQL=$this->readFileGraphQl('PurchaseReceipt_query.graphql');
 		$queryGraphQL=str_replace("%<purchaseOrder>%","'".$_id."'",$queryGraphQL);
-		//var_dump($queryGraphQL);
+		//echo($queryGraphQL);
 		$response=$this->query($queryGraphQL);
 		$json=json_decode($response);
 
@@ -177,7 +177,7 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		$queryGraphQL=(str_replace("%<orderFromSupplier>%",$filterBusinessPartnerId,$queryGraphQL));
 		$queryGraphQL=(str_replace("%<purchaseSite>%",$filterPurchaseSite,$queryGraphQL));
 		$queryGraphQL=(str_replace("%<receiptStatus>%",$filterReceiptStatus,$queryGraphQL));
-		//var_dump($queryGraphQL);
+		//echo($queryGraphQL);
 		$response=$this->query($queryGraphQL);
 		//var_dump($response);
 		$json=json_decode($response);
