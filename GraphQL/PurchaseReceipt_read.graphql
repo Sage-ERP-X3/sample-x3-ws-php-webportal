@@ -1,0 +1,33 @@
+{
+  xtremX3Purchasing {
+    purchaseReceipt {
+      read(_id: "%<_id>%") {
+        id
+        receiptSite {
+          _id
+          name
+        }
+        receiptDate
+        supplier {
+          _id
+        }
+        lines {
+          query {
+            edges {
+              node {
+                _sortValue
+                _id
+                lineNumber
+                purchaseOrder
+                purchaseOrderLineNumber
+                purchaseOrderSequenceNumber
+                quantityInReceiptUnitReceived
+              }
+            }
+          }
+        }
+      }
+    }
+    
+  }
+}

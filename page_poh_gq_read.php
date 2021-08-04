@@ -188,15 +188,15 @@
   		  var isConnect = '<?PHP echo $isConnect;?>';
     	  set_icon_connect(isConnect);
           $val = $('#ordnum').attr('placeholder');
-		  console.log("ol1",$val);
+		  //console.log("ol1",$val);
 
 		  if ($val===undefined) {
 			$val = '<?PHP if (isset($ordnum)) {echo $ordnum;}?>';
-			console.log("ol2",$val);
+			//console.log("ol2",$val);
 			
 					  
 		}
-		$('#formordnum').val($val);
+		//$('#formordnum').val($val);
 		$('#formordnum').attr('value',$val);
 });
 

@@ -36,7 +36,9 @@
 					<ul class="dropdown-menu" role="menu">
 
 						<li><a href="page_poh_gq_list.php">List of orders</a></li>
-						<li><a href="page_poh_gq_read.php">Read an order</a></li>
+						<li><a href="page_pth_gq_read.php">Read a receipt</a></li>
+						<li class="divider"></li>
+						<li><a href="page_poh_gq_read.php">Create a receipt</a></li>
 						<!--li class="divider"></li>
 						<li><a href="page_soh_create.php">Create an order</a></li-->
 					</ul>

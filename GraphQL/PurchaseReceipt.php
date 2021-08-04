@@ -5,6 +5,91 @@ require_once ('WebService/modelWS/ToolsWS.php');
 
 class PurchaseReceipt extends ModelGraphQLX3 {
 	
+	function showOne($_id) {
+		$queryGraphQL=$this->readFileGraphQl('PurchaseReceipt_read.graphql');
+		$queryGraphQL=str_replace("%<_id>%",$_id,$queryGraphQL);
+		//echo($queryGraphQL);
+		
+		$response=$this->query($queryGraphQL);
+		//var_dump($response);
+		$json=json_decode($response);
+
+		
+		$read = $json->{'data'}->{'xtremX3Purchasing'}->{'purchaseReceipt'}->{'read'};
+        //var_dump($read);
+
+		if (is_null($read)) {
+			return ToolsWS::getSucces ( "No result" );
+		}
+		$str = "";
+		// header
+		$str .= "<div class='row'>";
+
+		$str .= "<div class=' hidden col-lg-3 col-md-2 col-sm-1'>";			
+		$str .= "<label class='control-label' for='receiptnum'>Receipt number</label>";
+		$str .= "<input class='form-control' type='text' id='receiptnum' placeholder='";
+		$str .= $_id;
+		$str .= "' disabled >";
+		//$str .="<div class='hidden' id='sohnum'>";
+		$str .= "</div>";
+
+		$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
+		$str .= "<label class='control-label' for='disabledInput'>Receipt site</label>";
+		$str .= "<input class='form-control' type='text' placeholder='";
+		$str .= $read->{'receiptSite'}->{'_id'}.' -'.$read->{'receiptSite'}->{'name'};
+		$str .= "' disabled >";
+		$str .= "</div>";
+
+		$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
+		$str .= "<label class='control-label' for='disabledInput'>Receipt date</label>";
+		$str .= "<input class='form-control' type='text' placeholder='";
+		$str .= $read->{'receiptDate'};
+		$str .= "' disabled >";
+		$str .= "</div>";
+
+		$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
+		$str .= "<label class='control-label' for='disabledInput'>Supplier</label>";
+		$str .= "<input class='form-control' type='text' placeholder='";
+		$str .= $read->{'supplier'}->{'_id'};
+		$str .= "' disabled >";
+		$str .= "</div>";
+
+		$str .= "</div>";
+		$str .= "<br/>";
+		// Lines
+		$str .= "<table class='table table-striped table-bordered table-condensed'>";
+		$str .= "<thead><tr><th>Line number</th><th>Purchase order</th><th>Purchase order line</th><th>Purchase order sequence</th><th>Quantity received</th></tr></thead><tbody>";
+		$edges = $read->{'lines'}->{'query'}->{'edges'};
+		foreach ( $edges as $edge ) {
+			$str .= "<tr>";
+
+			$str .= "<td>";
+			$str .= $edge->{'node'}->{'lineNumber'};
+			$str .= "</td>";
+			
+			$str .= "<td>";
+			$str .= $edge->{'node'}->{'purchaseOrder'};
+			$str .= "</td>";
+
+			$str .= "<td>";
+			$str .= $edge->{'node'}->{'purchaseOrderLineNumber'};
+			$str .= "</td>";
+
+			$str .= "<td>";
+			$str .= $edge->{'node'}->{'purchaseOrderSequenceNumber'};
+			$str .= "</td>";
+
+			$str .= "<td>";
+			$str .= $edge->{'node'}->{'quantityInReceiptUnitReceived'};
+			$str .= "</td>";
+
+			$str .= "</tr>";
+		}
+		$str .= "</tbody></table>";
+		$str .= "</div>";
+
+		return $str;
+	}
 	function create($ordnum,$receiptSite,$receiptDate,$supplier, $lines) {
 
 		$queryGraphQL=$this->readFileGraphQl('PurchaseReceipt_mutation.graphql',false);

@@ -25,7 +25,7 @@
 	<div class="container">
 		<div class="bs-component">
 		<div class="row">
-				<div class="col-lg-9 col-md-5 col-sm-3">
+				<div class="12 col-md-7 col-sm-5">
 					<form class="form-horizontal" action="page_poh_gq_list.php"
 						method="post">
 						<fieldset>
@@ -66,8 +66,8 @@
 						</fieldset>
 					</form>
 				</div>
-			</div>
-			<div class="row">
+		</div>
+		<div class="row">
 				<div class="col-lg-12 col-md-7 col-sm-5 text-center">
 					<h2 class="section-heading">My purchase orders list</h2>
 

@@ -113,7 +113,7 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		return $str;
 	}
 	function showOneListRecept($_id) {
-		$queryGraphQL=$this->readFileGraphQl('PurchaseReceipt_query_1.graphql');
+		$queryGraphQL=$this->readFileGraphQl('PurchaseReceipt_query.graphql');
 		$queryGraphQL=str_replace("%<purchaseOrder>%","'".$_id."'",$queryGraphQL);
 		//var_dump($queryGraphQL);
 		$response=$this->query($queryGraphQL);
@@ -136,7 +136,8 @@ class PurchaseOrder extends ModelGraphQLX3 {
 			$str .= "</td>";
 
 			$str .= "<td>";
-			$str .= $edge->{'node'}->{'id'};
+			$val= $edge->{'node'}->{'id'};
+			$str .= '<a href="page_pth_gq_read.php?_id='.$val.'">'.$val.'</a>';
 			$str .= "</td>";
 			
 			$str .= "<td>";
