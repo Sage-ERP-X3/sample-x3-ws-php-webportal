@@ -61,6 +61,23 @@ which uses __X3 web services__ and __GraphQL api__.
 }
 ````
 
+### Explanations
+
+It is indeed a __GraphQl__ request because without the __word 'query'_ the graphql server assumes that it is the __operation 'query'__.
+
+
+````graphql
+{
+  xtremX3Purchasing {
+    ...
+
+query {
+  xtremX3Purchasing {
+    ...
+
+    
+````
+
 ## Query GraphQL - Operation X3 read ( for the detail)
 
 ````graphql
