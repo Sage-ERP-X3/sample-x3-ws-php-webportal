@@ -192,7 +192,7 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		//$queryGraphQL=(str_replace("%<orderFromSupplier>%",$filterBusinessPartnerId,$queryGraphQL));
 		//$queryGraphQL=(str_replace("%<purchaseSite>%",$filterPurchaseSite,$queryGraphQL));
 		//$queryGraphQL=(str_replace("%<receiptStatus>%",$filterReceiptStatus,$queryGraphQL));
-		//echo($queryGraphQL);
+		
 		$vars  ='';
 		$vars .='{';
 		$vars .='"first": '.$first.',';

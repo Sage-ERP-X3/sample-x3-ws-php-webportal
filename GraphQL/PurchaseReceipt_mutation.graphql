@@ -1,20 +1,9 @@
-mutation {
-        xtremX3Purchasing {
-            purchaseReceipt {
-                create(data:
-                {
-                    receiptSite: "%<receiptSite>%",
-                    receiptDate: "%<receiptDate>%",
-                    supplier: "%<supplier>%",
-                    lines: [
-                        %<fragmentLines>%
-                    ]
-                })
-                {
-                    id
-                  
-                }
-            }
-        }
-    
+mutation mySpeCreate($data: PurchaseReceipt_Input!) {
+  xtremX3Purchasing {
+    purchaseReceipt {
+      create(data: $data) {
+        id
+      }
+    }
+  }
 }

@@ -1,4 +1,4 @@
-query list($first: Int!,$filter:String, $orderBy: String) {
+query mySpeList($first: Int!,$filter:String, $orderBy: String) {
   xtremX3Purchasing {
     purchaseOrder {
       query (first:$first,filter:$filter,orderBy:$orderBy){

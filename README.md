@@ -25,17 +25,30 @@ which uses __X3 web services__ and __GraphQL api__.
  * Purchasing orders ( List and Detail)
  * Purchasing receipts ( List, Detail and __Creation__)
 
-## Use GraphQL queries
+## Use GraphQL queries with the UI graphql api
 
-# Purchase orders
+### GraphQL Query - mySpeList
 
-## Query GraphQL - Operation X3 query ( for the list)
+![Query mySpeList](/docimg/query_list.png)
+
+### GraphQL Mutation - mySpeCreate
+
+![Mutation mySpeCreate](/docimg/mutation.png)
+
+
+## Description of GraphQl queries
+
+### Purchase orders
+
+#### Query GraphQL - Operation X3 query ( for the list)
+
+__myspelist__ is a operation created for using parameters
 
 ````graphql
-{
+query mySpeList($first: Int!,$filter:String, $orderBy: String) {
   xtremX3Purchasing {
     purchaseOrder {
-      query(first: 50, filter: "[{orderFromSupplier:{_id:'CN001'}},{purchaseSite:{_id:'FR011'}},{}]", orderBy: "{purchaseSite:{_id:-1},_id:-1}") {
+      query (first:$first,filter:$filter,orderBy:$orderBy){
         edges {
           node {
             _id
@@ -61,30 +74,23 @@ which uses __X3 web services__ and __GraphQL api__.
 }
 ````
 
-### Explanations
+__GraphQl query variables__
 
-It is indeed a __GraphQl__ request because without the __word 'query'__ the graphql server assumes that it is the __operation 'query'__.
-
-
-````graphql
+````json
 {
-  xtremX3Purchasing {
-    ...
-
-query {
-  xtremX3Purchasing {
-    ...
-
-    
+  "first": 50,
+  "filter": "[{orderFromSupplier:{_id:'CN001'}},{purchaseSite:{_id:'FR011'}},{receiptStatus:'no'}]",
+  "orderBy": "{purchaseSite:{_id:-1},_id:-1}"
+}
 ````
 
-## Query GraphQL - Operation X3 read ( for the detail)
+#### Query GraphQL - Operation X3 read ( for the detail)
 
 ````graphql
-{
+query mySpeDetail($id:String!){
   xtremX3Purchasing {
     purchaseOrder {
-      read(_id: "POFR0110112") {
+      read(_id: $id) {
         _id
         purchaseSite {
           name
@@ -126,15 +132,23 @@ query {
 }
 ````
 
-# Purchase receipts
+__GraphQl query variables__
 
-## Query GraphQL - Operation X3 query ( for the list)
+````json
+{
+  "id": "POFR0110113"
+}
+````
+
+### Purchase receipts
+
+#### Query GraphQL - Operation X3 query ( for the list)
 
 ````graphql
-{
+query mySpeList($filter: String, $orderBy: String){
   xtremX3Purchasing {
     purchaseReceipt {
-      query(filter: "{lines:{_every:true,purchaseOrder:'POFR0110112'}}", orderBy: "{id:-1}") {
+      query(filter: $filter, orderBy: $orderBy) {
         edges {
           node {
             id
@@ -154,13 +168,22 @@ query {
 }
 ````
 
-## Query GraphQL - Operation X3 read ( for the detail)
+__GraphQl query variables__
+
+````json
+{
+  "filter": "{lines:{_every:true,purchaseOrder:'POFR0110113'}}",
+  "orderBy": "{id:-1}"
+}
+````
+
+#### Query GraphQL - Operation X3 read ( for the detail)
 
 ````graphql
-{
+query mySpeDetail($id:String!){
   xtremX3Purchasing {
     purchaseReceipt {
-      read(_id: "RECFR0110094") {
+      read(_id: $id) {
         id
         receiptSite {
           _id
@@ -187,68 +210,71 @@ query {
         }
       }
     }
+    
   }
 }
-
 ````
 
-## Mutation GraphQL - Operation X3 create ( for the creation)
+__GraphQl query variables__
+
+````json
+{
+  "id": "RECFR0110094"
+}
+````
+
+#### Mutation GraphQL - Operation X3 create ( for the creation)
 
 ````graphql
-mutation {
+mutation mySpeCreate($data: PurchaseReceipt_Input!) {
   xtremX3Purchasing {
     purchaseReceipt {
-      create(
-        data: 
-        	{
-            receiptSite: "FR011", 
-            receiptDate: "2021-08-04", 
-            supplier: "CN001", 
-            lines: 
-            	[
-                {
-                  receiptSite: "FR011", 
-                  purchaseOrder: "POFR0110112", 
-                  purchaseOrderLineNumber: "1000", 
-                  product: "DIS012", 
-                  receiptUnit: "UN", 
-                  quantityInReceiptUnitReceived: "10", 
-                  stockDetails: 
-                  	[
-                      {
-                        status: "A", 
-                        packingUnit: "UN", 
-                        quantityInPackingUnit: "10"
-                      }
-                    ]
-                }, 
-                {
-                  receiptSite: "FR011",
-                  purchaseOrder: "POFR0110112", 
-                  purchaseOrderLineNumber: "2000",
-                  product: "DIS013",
-                  receiptUnit: "UN",
-                  quantityInReceiptUnitReceived: "20",
-                  stockDetails: 
-                  	[
-                      {
-                        status: "A",
-                        packingUnit: "UN",
-                        quantityInPackingUnit: "20"
-                      }
-                    ]
-                }
-              ]
-          }
-      )
-      {
+      create(data: $data) {
         id
       }
     }
   }
 }
+````
 
+__GraphQl query variables__
 
+````json
+{
+  "data": {
+    "receiptSite": "FR011",
+    "receiptDate": "2021-08-05",
+    "supplier": "CN001",
+    "lines": [
+      {
+        "receiptSite": "FR011",
+        "purchaseOrder": "POFR0110112",
+        "purchaseOrderLineNumber": "1000",
+        "product": "DIS012",
+        "receiptUnit": "UN",
+        "quantityInReceiptUnitReceived": "10",
+        "stockDetails": {
+          "status": "A",
+          "packingUnit": "UN",
+          "quantityInPackingUnit": "10"
+        }
+      },
+      {
+        "receiptSite": "FR011",
+        "purchaseOrder": "POFR0110112",
+        "purchaseOrderLineNumber": "2000",
+        "product": "DIS013",
+        "receiptUnit": "UN",
+        "quantityInReceiptUnitReceived": "20",
+        "stockDetails": {
+          "status": "A",
+          "packingUnit": "UN",
+          "quantityInPackingUnit": "20"
+        }
+      }
+    ]
+  }
+}
 ````
 
 ## Using Web Sage design

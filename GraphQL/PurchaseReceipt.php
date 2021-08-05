@@ -96,19 +96,23 @@ class PurchaseReceipt extends ModelGraphQLX3 {
 
 		return $str;
 	}
-	function create($ordnum,$receiptSite,$receiptDate,$supplier, $lines) {
+	function create($arrayInput) {
 
-		$queryGraphQL=$this->readFileGraphQl('PurchaseReceipt_mutation.graphql',false);
-		$queryGraphQL=str_replace("%<receiptSite>%",$receiptSite,$queryGraphQL);
-		$queryGraphQL=str_replace("%<receiptDate>%",$receiptDate,$queryGraphQL);
-		$queryGraphQL=str_replace("%<supplier>%",$supplier,$queryGraphQL);
+		$queryGraphQL=$this->readFileGraphQl('PurchaseReceipt_mutation.graphql',true);
+		//$queryGraphQL=str_replace("%<receiptSite>%",$receiptSite,$queryGraphQL);
+		//$queryGraphQL=str_replace("%<receiptDate>%",$receiptDate,$queryGraphQL);
+		//$queryGraphQL=str_replace("%<supplier>%",$supplier,$queryGraphQL);
 		
-		$queryGraphQL=str_replace(" %<fragmentLines>%",$lines,$queryGraphQL);
-		$queryGraphQL = str_replace("\r\n","",$queryGraphQL);
-		$queryGraphQL = str_replace('"','\"',$queryGraphQL);
+		//$queryGraphQL=str_replace(" %<fragmentLines>%",$lines,$queryGraphQL);
+		//$queryGraphQL = str_replace("\r\n","",$queryGraphQL);
+		//$queryGraphQL = str_replace('"','\"',$queryGraphQL);
 		//var_dump($queryGraphQL);
-		echo($queryGraphQL);
-		$response=$this->query($queryGraphQL);
+		$vars  ='';
+		$vars = json_encode($arrayInput);
+		//echo($queryGraphQL);
+		//echo($vars);
+		
+		$response=$this->query($queryGraphQL,$vars);
 		//echo($response);
 		$json=json_decode($response);
 
@@ -141,7 +145,8 @@ class PurchaseReceipt extends ModelGraphQLX3 {
 					$ret .="</tr></thead><tbody><tr><td><a HREF='page_soh_read.php?sohnum=".$receiptNum."' >".$receiptNum."</a>";
 					$ret .="</td></tr></tbody></table>";
 		*/
-		$ret = ToolsWS::getSucces ( "Receipt created : ".$receiptNum );
+		$mess=  'Receipt created : '.'<a href="page_pth_gq_read.php?_id='.$receiptNum.'">'.$receiptNum.'</a>';
+		$ret = ToolsWS::getSucces ( $mess );
 		return $ret;
 
 	}

@@ -1,4 +1,4 @@
-query list($filter: String, $orderBy: String){
+query mySpeList($filter: String, $orderBy: String){
   xtremX3Purchasing {
     purchaseReceipt {
       query(filter: $filter, orderBy: $orderBy) {

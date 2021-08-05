@@ -1,4 +1,4 @@
-query detail($id:String!){
+query mySpeDetail($id:String!){
   xtremX3Purchasing {
     purchaseReceipt {
       read(_id: $id) {

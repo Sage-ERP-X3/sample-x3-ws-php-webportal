@@ -73,38 +73,38 @@
 											$tabProduct = $_POST ["formtabproduct"];
 											$tabBorderUnit = $_POST ["formtaborderunit"];
 											$tabQtyToReceive = $_POST ["formtabqtytoreceive"];
-											
-											$lines= '';
-											
 											//echo(count ( $tabLineNumber ));
+											$arrayLine= array(count ( $tabLineNumber ));
 											for($i = 0; $i < count ( $tabLineNumber ); $i ++) {
 												if ($tabQtyToReceive[$i]>0) {
-												$s='';
-												$s .= '{';
-												$s .= ' receiptSite:"'.$receiptSite.'", ';
-												$s .= ' purchaseOrder:"'.$ordnum.'", ';
-												$s .= ' purchaseOrderLineNumber:"'.$tabLineNumber[$i].'", ';
-												$s .= ' product:"'.$tabProduct[$i].'", ';
-												$s .= ' receiptUnit:"'.$tabBorderUnit[$i].'", ';
-												$s .= ' quantityInReceiptUnitReceived:"'.$tabQtyToReceive[$i].'",';
-												//$s .= ' #_forMutationOnlyDoClosePurchaseOrderLine:2';
-												$s .= ' stockDetails: [';
-												$s .= ' {';
-												$s .= ' status: "A",';
-												$s .= ' packingUnit: "'.$tabBorderUnit[$i].'", ';
-												$s .= ' quantityInPackingUnit:"'.$tabQtyToReceive[$i].'" ';
-												$s .= ' }';
-												$s .= ' ]';
-												$s .= ' }';	
-												$lines.= $s;
-												//if ($i< count ( $tabLineNumber )-1) {
-													$lines.= ',';
-												//}
+													$arrayLine[$i] = array (
+															"receiptSite"=>$receiptSite,
+															"purchaseOrder"=>$ordnum,
+															"purchaseOrderLineNumber"=>$tabLineNumber[$i],
+															"product"=>$tabProduct[$i],
+															"receiptUnit"=>$tabBorderUnit[$i],
+															"quantityInReceiptUnitReceived"=>$tabQtyToReceive[$i],
+															"stockDetails"=> array (
+																"status"=>"A",
+																"packingUnit"=>$tabBorderUnit[$i],
+																"quantityInPackingUnit"=>$tabQtyToReceive[$i]
+																			)
+															);
 											}
-											}
-											//echo($lines);
-											$receiptNum=$receipt->create ($ordnum,$receiptSite,$receiptDate,$supplier,$lines);
-											echo ($order->showOneDetailOrder ( $ordnum ));
+										}
+											//var_dump($arrayLine);
+										$arrayInput = array (
+											"data"=> array (
+												"receiptSite"=>$receiptSite,
+												"receiptDate"=>$receiptDate,
+												"supplier"=> $supplier,
+												"lines"=> $arrayLine
+											)
+										);
+										//var_dump($arrayInput);
+
+										$receiptNum=$receipt->create ($arrayInput);
+										echo ($order->showOneDetailOrder ( $ordnum ));
 
 										}
 										
