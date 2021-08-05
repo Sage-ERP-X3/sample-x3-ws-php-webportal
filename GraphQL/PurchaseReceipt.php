@@ -6,11 +6,17 @@ require_once ('WebService/modelWS/ToolsWS.php');
 class PurchaseReceipt extends ModelGraphQLX3 {
 	
 	function showOne($_id) {
-		$queryGraphQL=$this->readFileGraphQl('PurchaseReceipt_read.graphql');
-		$queryGraphQL=str_replace("%<_id>%",$_id,$queryGraphQL);
-		//echo($queryGraphQL);
+		$queryGraphQL=$this->readFileGraphQl('PurchaseReceipt_read.graphql',true);
+		//$queryGraphQL=str_replace("%<_id>%",$_id,$queryGraphQL);
 		
-		$response=$this->query($queryGraphQL);
+		$vars  ='';
+		$vars .='{';
+		$vars .='  "id": "'.$_id.'"';
+		$vars .='  }';
+		//echo($queryGraphQL);
+		//echo($vars);
+		
+		$response=$this->query($queryGraphQL,$vars);
 		//var_dump($response);
 		$json=json_decode($response);
 
@@ -101,7 +107,7 @@ class PurchaseReceipt extends ModelGraphQLX3 {
 		$queryGraphQL = str_replace("\r\n","",$queryGraphQL);
 		$queryGraphQL = str_replace('"','\"',$queryGraphQL);
 		//var_dump($queryGraphQL);
-		//echo($queryGraphQL);
+		echo($queryGraphQL);
 		$response=$this->query($queryGraphQL);
 		//echo($response);
 		$json=json_decode($response);

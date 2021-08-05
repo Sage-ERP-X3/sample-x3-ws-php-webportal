@@ -6,16 +6,21 @@ require_once ('WebService/modelWS/ToolsWS.php');
 class PurchaseOrder extends ModelGraphQLX3 {
 	function showOneDetailOrder($_id) {
 		$queryGraphQL=$this->readFileGraphQl('PurchaseOrder_read.graphql');
-		$queryGraphQL=str_replace("%<_id>%",$_id,$queryGraphQL);
-		//echo($queryGraphQL);
+		//$queryGraphQL=str_replace("%<_id>%",$_id,$queryGraphQL);
 		
-		$response=$this->query($queryGraphQL);
-		//var_dump($response);
+		$vars  ='';
+		$vars .='{';
+		$vars .='  "id": "'.$_id.'"';
+		$vars .='  }';
+		//echo($queryGraphQL);
+		//echo($vars);
+		$response=$this->query($queryGraphQL,$vars);
+		
 		$json=json_decode($response);
 
 		
 		$read = $json->{'data'}->{'xtremX3Purchasing'}->{'purchaseOrder'}->{'read'};
-        //var_dump($read);
+        
 
 		if (is_null($read)) {
 			return ToolsWS::getSucces ( "No result" );
@@ -113,10 +118,18 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		return $str;
 	}
 	function showOneListRecept($_id) {
-		$queryGraphQL=$this->readFileGraphQl('PurchaseReceipt_query.graphql');
-		$queryGraphQL=str_replace("%<purchaseOrder>%","'".$_id."'",$queryGraphQL);
+		$queryGraphQL=$this->readFileGraphQl('PurchaseReceipt_query.graphql',true);
+		//$queryGraphQL=str_replace("%<purchaseOrder>%","'".$_id."'",$queryGraphQL);
+		
+
+		$vars  ='';
+		$vars .='{';
+		$vars .='"filter": "{lines:{_every:true,purchaseOrder:\''.$_id.'\'}}",';
+		$vars .='"orderBy":"{id:-1}"';
+		$vars .='  }';
 		//echo($queryGraphQL);
-		$response=$this->query($queryGraphQL);
+		//echo($vars);
+		$response=$this->query($queryGraphQL,$vars);
 		$json=json_decode($response);
 
 		//var_dump($json);
@@ -158,7 +171,9 @@ class PurchaseOrder extends ModelGraphQLX3 {
 	
 	function showList( $businessPartnerId='', $purchaseSite='', $receiptStatus='' ) {
 		
-		$queryGraphQL=$this->readFileGraphQl('PurchaseOrder_query.graphql');
+		$first = 50;
+
+		$queryGraphQL=$this->readFileGraphQl('PurchaseOrder_query.graphql',true);
 		
 		$filterBusinessPartnerId='{}';
 		if ($businessPartnerId!='') {
@@ -174,11 +189,19 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		 $filterReceiptStatus='{receiptStatus:\''.$receiptStatus.'\'}';
 		}
 		
-		$queryGraphQL=(str_replace("%<orderFromSupplier>%",$filterBusinessPartnerId,$queryGraphQL));
-		$queryGraphQL=(str_replace("%<purchaseSite>%",$filterPurchaseSite,$queryGraphQL));
-		$queryGraphQL=(str_replace("%<receiptStatus>%",$filterReceiptStatus,$queryGraphQL));
+		//$queryGraphQL=(str_replace("%<orderFromSupplier>%",$filterBusinessPartnerId,$queryGraphQL));
+		//$queryGraphQL=(str_replace("%<purchaseSite>%",$filterPurchaseSite,$queryGraphQL));
+		//$queryGraphQL=(str_replace("%<receiptStatus>%",$filterReceiptStatus,$queryGraphQL));
 		//echo($queryGraphQL);
-		$response=$this->query($queryGraphQL);
+		$vars  ='';
+		$vars .='{';
+		$vars .='"first": '.$first.',';
+		$vars .='"filter": "[{orderFromSupplier:'.$filterBusinessPartnerId.'},{purchaseSite:'.$filterPurchaseSite.'},'.$filterReceiptStatus.']",';
+		$vars .='"orderBy":"{purchaseSite:{_id:-1},_id:-1}"';
+		$vars .='  }';
+		//echo($queryGraphQL);
+		//echo($vars);
+		$response=$this->query($queryGraphQL,$vars);
 		//var_dump($response);
 		$json=json_decode($response);
 

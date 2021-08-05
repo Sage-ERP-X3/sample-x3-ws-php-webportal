@@ -1,7 +1,7 @@
-{
+query list($first: Int!,$filter:String, $orderBy: String) {
   xtremX3Purchasing {
     purchaseOrder {
-      query (first:50,filter:"[{orderFromSupplier:%<orderFromSupplier>%},{purchaseSite:%<purchaseSite>%},%<receiptStatus>%]",orderBy:"{purchaseSite:{_id:-1},_id:-1}"){
+      query (first:$first,filter:$filter,orderBy:$orderBy){
         edges {
           node {
             _id

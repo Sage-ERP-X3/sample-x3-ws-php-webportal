@@ -1,7 +1,7 @@
-{
+query detail($id:String!){
   xtremX3Purchasing {
     purchaseReceipt {
-      read(_id: "%<_id>%") {
+      read(_id: $id) {
         id
         receiptSite {
           _id

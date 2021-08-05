@@ -1,7 +1,7 @@
-{
+query list($filter: String, $orderBy: String){
   xtremX3Purchasing {
     purchaseReceipt {
-      query(filter: "{lines:{_every:true,purchaseOrder:%<purchaseOrder>%}}", orderBy: "{id:-1}") {
+      query(filter: $filter, orderBy: $orderBy) {
         edges {
           node {
             id

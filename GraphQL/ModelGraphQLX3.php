@@ -11,7 +11,7 @@ class ModelGraphQLX3 {
 	}
 	
 	
-	public function query($queryGraphQL) {
+	public function query($queryGraphQL, $variables='{}') {
         $curl = curl_init();
         $token = $this->jwt->getToken();    
         curl_setopt_array($curl, array(
@@ -23,7 +23,7 @@ class ModelGraphQLX3 {
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS =>'{"query":"'.$queryGraphQL.'","variables":{}}',
+            CURLOPT_POSTFIELDS =>'{"query":"'.$queryGraphQL.'","variables":'.$variables.'}',
             CURLOPT_HTTPHEADER => array(
 	            //"authorization: Basic ". base64_encode(Config::$GQL_USER.":".Config::$GQL_PASSWORD),
                 "Authorization: Bearer ". $token,
