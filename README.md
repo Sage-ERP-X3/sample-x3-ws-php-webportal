@@ -301,4 +301,3 @@ __GraphQl query variables__
 
 * X3 Version minimum  X3 2021R2
 
-* We must use the basic authentication http.
