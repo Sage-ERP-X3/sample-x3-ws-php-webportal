@@ -41,8 +41,8 @@
 							<div class="form-group">
 								<div class="col-lg-10 col-lg-offset-2">
 									<button type="reset" class="btn btn-default">Cancel</button>
-									<button type="submit" name="read" class="btn btn-primary">Read</button>
-									<button type="submit" name="create_recept" class="btn btn-primary">Create recept</button>
+									<button type="submit" name="read" class="btn btn-primary">Read order</button>
+									<button type="submit" name="create_recept" class="btn btn-primary">Create receipt</button>
 								</div>
 							</div>
 
