@@ -1,8 +1,8 @@
 <?php
 require_once ('config/Config.php');
 require_once ('ModelGraphQLX3.php');
-require_once ('WebService/modelWS/ToolsWS.php');
-
+require_once ('tools-api/ToolsWS.php');
+require_once ('tools-api/consolePHP.php');
 class PurchaseOrder extends ModelGraphQLX3 {
 	function showOneDetailOrder($_id) {
 		$queryGraphQL=$this->readFileGraphQl('PurchaseOrder_read.graphql');
@@ -199,7 +199,11 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		$vars .='"filter": "[{orderFromSupplier:'.$filterBusinessPartnerId.'},{purchaseSite:'.$filterPurchaseSite.'},'.$filterReceiptStatus.']",';
 		$vars .='"orderBy":"{purchaseSite:{_id:-1},_id:-1}"';
 		$vars .='  }';
+		//ToolsWS::printSucces ( $queryGraphQL );
+		
+		console_php_log('$queryGraphQL',$queryGraphQL);
 		//echo($queryGraphQL);
+		console_php_log('$vars',$vars);
 		//echo($vars);
 		$response=$this->query($queryGraphQL,$vars);
 		//var_dump($response);

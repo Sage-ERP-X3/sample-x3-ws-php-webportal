@@ -13,9 +13,10 @@ class ModelGraphQLX3 {
 	
 	public function query($queryGraphQL, $variables='{}') {
         $curl = curl_init();
-        $token = $this->jwt->getToken();    
+        $token = $this->jwt->getToken();  
+        $graphQLServer = Config::$WEB_SERVER_X3 . "/xtrem/api";   
         curl_setopt_array($curl, array(
-            CURLOPT_URL => Config::$GQL_SERVER,
+            CURLOPT_URL =>  $graphQLServer,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,

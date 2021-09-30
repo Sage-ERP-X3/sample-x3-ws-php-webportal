@@ -18,7 +18,8 @@ class ModelX3 {
 	function __construct() {
 		$jwt   = new TokenJWT ();
 		$token = $jwt->getToken();
-		$wsdl = Config::$WSDL;
+		//$wsdl = Config::$WSDL;
+		$wsdl = Config::$WEB_SERVER_X3 . "/soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl";
 		$optionsAuth = Array (
 				'cache_wsdl' => WSDL_CACHE_NONE,
 				//'login' => Config::$CODE_USER,
@@ -37,7 +38,7 @@ class ModelX3 {
 		$this->callContext = array (
 				'codeLang' => Config::$CODE_LANG,
 				'poolAlias' => Config::$POOL_ALIAS,
-				'requestConfig' => Config::$REQUEST_CONFIG 
+				'requestConfig' => "adxwss.optreturn=XML" 
 		);
 	}
 	

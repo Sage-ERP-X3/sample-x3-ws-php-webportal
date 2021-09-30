@@ -31,7 +31,7 @@
 					
                     <?php
 																				require_once ('WebService/models/Connect.php');
-																				require_once ('WebService/modelWS/ToolsWS.php');
+																				require_once ('tools-api/ToolsWS.php');
 																				
 																				$formlogin = $_POST ['formlogin'];
 																				$formpasswd = $_POST ['formpasswd'];

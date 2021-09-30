@@ -1,7 +1,7 @@
 <?php
 require_once ('config/Config.php');
 require_once ('ModelGraphQLX3.php');
-require_once ('WebService/modelWS/ToolsWS.php');
+require_once ('tools-api/ToolsWS.php');
 
 class PurchaseReceipt extends ModelGraphQLX3 {
 	
