@@ -6,14 +6,11 @@ require_once ('tools-api/consolePHP.php');
 class PurchaseOrder extends ModelGraphQLX3 {
 	function showOneDetailOrder($_id) {
 		$queryGraphQL=$this->readFileGraphQl('PurchaseOrder_read.graphql');
-		//$queryGraphQL=str_replace("%<_id>%",$_id,$queryGraphQL);
 		
 		$vars  ='';
 		$vars .='{';
 		$vars .='  "id": "'.$_id.'"';
 		$vars .='  }';
-		//echo($queryGraphQL);
-		//echo($vars);
 		$response=$this->query($queryGraphQL,$vars);
 		
 		$json=json_decode($response);
@@ -119,20 +116,15 @@ class PurchaseOrder extends ModelGraphQLX3 {
 	}
 	function showOneListRecept($_id) {
 		$queryGraphQL=$this->readFileGraphQl('PurchaseReceipt_query.graphql',true);
-		//$queryGraphQL=str_replace("%<purchaseOrder>%","'".$_id."'",$queryGraphQL);
 		
-
 		$vars  ='';
 		$vars .='{';
 		$vars .='"filter": "{lines:{_every:true,purchaseOrder:\''.$_id.'\'}}",';
 		$vars .='"orderBy":"{id:-1}"';
 		$vars .='  }';
-		//echo($queryGraphQL);
-		//echo($vars);
 		$response=$this->query($queryGraphQL,$vars);
 		$json=json_decode($response);
 
-		//var_dump($json);
 		$query = $json->{'data'}->{'xtremX3Purchasing'}->{'purchaseReceipt'}->{'query'};
         
 		$str = "";
@@ -189,9 +181,6 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		 $filterReceiptStatus='{receiptStatus:\''.$receiptStatus.'\'}';
 		}
 		
-		//$queryGraphQL=(str_replace("%<orderFromSupplier>%",$filterBusinessPartnerId,$queryGraphQL));
-		//$queryGraphQL=(str_replace("%<purchaseSite>%",$filterPurchaseSite,$queryGraphQL));
-		//$queryGraphQL=(str_replace("%<receiptStatus>%",$filterReceiptStatus,$queryGraphQL));
 		
 		$vars  ='';
 		$vars .='{';
@@ -199,17 +188,9 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		$vars .='"filter": "[{orderFromSupplier:'.$filterBusinessPartnerId.'},{purchaseSite:'.$filterPurchaseSite.'},'.$filterReceiptStatus.']",';
 		$vars .='"orderBy":"{purchaseSite:{_id:-1},_id:-1}"';
 		$vars .='  }';
-		//ToolsWS::printSucces ( $queryGraphQL );
-		
-		console_php_log('$queryGraphQL',$queryGraphQL);
-		//echo($queryGraphQL);
-		console_php_log('$vars',$vars);
-		//echo($vars);
 		$response=$this->query($queryGraphQL,$vars);
-		//var_dump($response);
 		$json=json_decode($response);
 
-		//var_dump($json);
 		$edges = $json->{'data'}->{'xtremX3Purchasing'}->{'purchaseOrder'}->{'query'}->{'edges'};
 		$str = "<table class='table table-striped table-bordered table-condensed'>";
 		$str .= "<thead><tr><th>Order number</th><th>Site</th><th>Supplier</th><th>Internal order reference</th><th>Receipt status</th><th>Signature status</th><th>Is closed</th></tr></thead><tbody>";
@@ -242,58 +223,6 @@ class PurchaseOrder extends ModelGraphQLX3 {
 
 	}
 	
-	/*function create($WS) {
-		$this->CAdxResultXml = $this->save ( Config::$WS_ORDER, $WS );
-		$adxResultXml = $this->CAdxResultXml;
-		$ret="";
-		$messages = array();
-		$status = $adxResultXml->status;
-		if ($status == 1) {
-			$ret.=ToolsWS::getSucces('Order created');
-			//return $ret;
-			// echo "order créée<BR/>";
-		} else {
-			$ret.=ToolsWS::getError('Order not created');
-			//return $ret;
-			// echo "Erreur, commande non créée<BR/>";
-		}
-			
-		// echo "Messages: <BR/>";
-		if (property_exists(get_class($adxResultXml), 'messages')){
-			$messages = $adxResultXml->messages;
-		
-			foreach ( $messages as $value ) {
-				$ret .= $value->message;
-				$ret .= "<BR/>";
-			}
-		}
-		// echo "resultXml<BR/>";
-		// echo "$result2->resultXml<BR/>";
-		if ($status == 0) {
-		 return $ret;
-		}
-		$dom = new DomDocument ();
-		$resultXml = $adxResultXml->resultXml;
-		$dom->loadXML ( $resultXml );
-		
-		
-		$fld = $dom->getElementsByTagName ( 'FLD' );
-		$ret .= "<div class='row'>";
-		
-		foreach ( $fld as $f ) {	
-			$val = $f->getAttribute ( 'NAME' );
-			$val2 = $f->nodeValue;
-			if ($val == "SOHNUM") {
-					$ret .= "<div class='col-lg-5 col-md-3 col-sm-2'>";
-					$ret .= "<table class='table table-striped table-bordered table-condensed'>";
-					$ret .="<thead><tr><th>Order num</th>";
-					$ret .="</tr></thead><tbody><tr><td><a HREF='page_soh_read.php?sohnum=".$val2."' >".$val2."</a>";
-					$ret .="</td></tr></tbody></table>";
-			}
-		}
-		return $ret;
 	}
-	*/
-}
 
  ?>

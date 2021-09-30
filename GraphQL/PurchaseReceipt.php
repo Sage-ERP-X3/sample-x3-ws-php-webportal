@@ -99,38 +99,20 @@ class PurchaseReceipt extends ModelGraphQLX3 {
 	function create($arrayInput) {
 
 		$queryGraphQL=$this->readFileGraphQl('PurchaseReceipt_mutation.graphql',true);
-		//$queryGraphQL=str_replace("%<receiptSite>%",$receiptSite,$queryGraphQL);
-		//$queryGraphQL=str_replace("%<receiptDate>%",$receiptDate,$queryGraphQL);
-		//$queryGraphQL=str_replace("%<supplier>%",$supplier,$queryGraphQL);
 		
-		//$queryGraphQL=str_replace(" %<fragmentLines>%",$lines,$queryGraphQL);
-		//$queryGraphQL = str_replace("\r\n","",$queryGraphQL);
-		//$queryGraphQL = str_replace('"','\"',$queryGraphQL);
-		//var_dump($queryGraphQL);
 		$vars  ='';
 		$vars = json_encode($arrayInput);
-		//echo($queryGraphQL);
-		//echo($vars);
 		
 		$response=$this->query($queryGraphQL,$vars);
-		//echo($response);
 		$json=json_decode($response);
 
 		
 		$create = $json->{'data'}->{'xtremX3Purchasing'}->{'purchaseReceipt'}->{'create'};
-        //var_dump($create);
-
+        
 		if (is_null($create)) {
 			return ToolsWS::getError ( "unsuccessful creation" );
 		}
 		$id = $create->{'id'};
-		/*$ret="";
-		$ret .= "<div class='col-lg-5 col-md-3 col-sm-2'>";
-					$ret .= "<table class='table table-striped table-bordered table-condensed'>";
-					$ret .="<thead><tr><th>Receipt num</th>";
-					$ret .="</tr></thead><tbody><tr><td><a HREF='page_soh_read.php?sohnum=".$id."' >".$id."</a>";
-					$ret .="</td></tr></tbody></table>";
-		*/
 		return $id;
 
 	}
@@ -139,12 +121,7 @@ class PurchaseReceipt extends ModelGraphQLX3 {
 
 		
 		$ret="";
-		//$ret .= "<div class='col-lg-5 col-md-3 col-sm-2'>";
-		/*			$ret .= "<table class='table table-striped table-bordered table-condensed'>";
-					$ret .="<thead><tr><th>Receipt num</th>";
-					$ret .="</tr></thead><tbody><tr><td><a HREF='page_soh_read.php?sohnum=".$receiptNum."' >".$receiptNum."</a>";
-					$ret .="</td></tr></tbody></table>";
-		*/
+		
 		$mess=  'Receipt created : '.'<a href="page_pth_gq_read.php?_id='.$receiptNum.'">'.$receiptNum.'</a>';
 		$ret = ToolsWS::getSucces ( $mess );
 		return $ret;

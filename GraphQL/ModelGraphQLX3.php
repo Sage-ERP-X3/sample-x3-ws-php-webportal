@@ -2,12 +2,11 @@
 
 require_once ('config/Config.php');
 require_once ('authentication/JWT/TokenJWT.php');
-
+require_once ('tools-api/consolePHP.php');
 class ModelGraphQLX3 {
 	private $jwt;
 	function __construct() {
 		$this->jwt   = new TokenJWT ();
-        //var_dump($jwt);
 	}
 	
 	
@@ -33,9 +32,10 @@ class ModelGraphQLX3 {
 	
             ),
         ));
-
+        console_php_log('GraphQL query',$queryGraphQL);
+        console_php_log('GraphQL variables',$variables);
         $response = curl_exec($curl);
-
+        //console_php_log('GraphQL response',$response);
         curl_close($curl);
 		return $response;
 	}
