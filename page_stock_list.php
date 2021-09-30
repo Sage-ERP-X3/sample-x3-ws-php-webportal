@@ -68,7 +68,7 @@
 					<h2 class="section-heading">Result</h2>
 																				
 					<?php
-					require_once ('WebService/models/stock.php');
+					require_once ('WebServiceSOAP/models/stock.php');
 					if (isset ( $_POST ["formsite"] )) {
 						//$formfcypat="AO021";
 						$formfcypat=$_POST ['formsite'];

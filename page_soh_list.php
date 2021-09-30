@@ -34,12 +34,12 @@
 
 																				
 									<?php
-									require_once ('WebService/models/Order.php');
+									require_once ('WebServiceSOAP/models/Order.php');
 									try {
 										$order = new Order ();
 										echo ($order->showListe ());
 									} catch ( SoapFault $e ) {
-										//echo($e);
+										echo($e);
 									ToolsWS::printError ( "X3 Web service not available" );
 									}
 									?>

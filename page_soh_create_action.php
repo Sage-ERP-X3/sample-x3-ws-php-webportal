@@ -31,7 +31,7 @@
 
 					
                     <?php
-																				require_once ('WebService/models/Order.php');
+																				require_once ('WebServiceSOAP/models/Order.php');
 																				// echo "</BR>";
 																				$formsalfcy = $_POST ['formsalfcy'];
 																				$formsohtyp = $_POST ['formsohtyp'];

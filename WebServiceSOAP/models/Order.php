@@ -1,5 +1,5 @@
 <?php
-require_once ('WebService/modelWS/ModelX3.php');
+require_once ('WebServiceSOAP/modelWS/ModelX3.php');
 class Order extends ModelX3 {
 	function showOne($crit) {
 		$listFieldLines = array (
@@ -128,7 +128,6 @@ class Order extends ModelX3 {
 	function showListe() {
 		$WS = "*";	
 		$this->CAdxResultXml = $this->query ( Config::$WS_ORDER, $WS, 100 );
-
 		//var_dump($this->soapClient->__getLastRequestHeaders());
 		$result = $this->CAdxResultXml->resultXml;
 		// $result contient le fichier XML des réponses

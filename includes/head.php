@@ -1,7 +1,8 @@
 <?php
 session_start ();
 
-require_once ('WebService/models/Connect.php');
+require_once ('WebServiceSOAP/models/Connect.php');
+require_once ('tools-api/ToolsWS.php');
 $isConnect = false;
 if (isset ( $_SESSION ["x3login"] )) {
 	$x3login = $_SESSION ["x3login"];

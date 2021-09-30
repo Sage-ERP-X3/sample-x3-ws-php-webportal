@@ -29,7 +29,7 @@
 			<div class="row">
 				<div class="col-lg-9 col-md-5 col-sm-3 text-center">
 				<?php
-				require_once ('WebService/modelWS/ModelWS.php');
+				require_once ('WebServiceSOAP/modelWS/ModelWS.php');
 				
 				if ($isConnect) {
 					// ToolsWS::printSucces ( "connexion reussie" );

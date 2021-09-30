@@ -10,7 +10,7 @@ include_once('CAdxParamKeyValue.php');
 /**
  * This SOAP web service allows to call X3 sub programs and/or to manipulate X3 objects trough CRUD and specifics methods
  */
-class CAdxWebServiceXmlCCService extends \SoapClient
+class CAdxWebServiceSOAPXmlCCService extends \SoapClient
 {
 
     /**
@@ -29,7 +29,7 @@ class CAdxWebServiceXmlCCService extends \SoapClient
      * @param string $wsdl The wsdl file to use
      * @access public
      */
-    public function __construct(array $options = array(), $wsdl = 'http://localhost:8124/soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl')
+    public function __construct(array $options = array(), $wsdl = 'http://localhost:8124/soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceSOAPXmlCC?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
     if (!isset($options['classmap'][$key])) {

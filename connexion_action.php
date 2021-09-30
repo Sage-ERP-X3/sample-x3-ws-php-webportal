@@ -30,7 +30,7 @@
 
 					
                     <?php
-																				require_once ('WebService/models/Connect.php');
+																				require_once ('WebServiceSOAP/models/Connect.php');
 																				require_once ('tools-api/ToolsWS.php');
 																				
 																				$formlogin = $_POST ['formlogin'];

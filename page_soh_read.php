@@ -57,7 +57,7 @@
 							
 									<?php
 									
-									require_once ('WebService/models/Order.php');
+									require_once ('WebServiceSOAP/models/Order.php');
 									if (isset ( $_POST ["formsohnum"] )) {
 										$sohnum = $_POST ['formsohnum'];
 										try {

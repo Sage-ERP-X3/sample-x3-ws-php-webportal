@@ -57,7 +57,7 @@
 							
 									<?php
 									
-									require_once ('WebService/models/Product.php');
+									require_once ('WebServiceSOAP/models/Product.php');
 									if (isset ( $_POST ["formitmref"] )) {
 										$sohnum = $_POST ['formitmref'];
 										try {

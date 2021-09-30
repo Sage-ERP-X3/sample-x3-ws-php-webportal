@@ -34,7 +34,7 @@
 
 																				
 									<?php
-									require_once ('WebService/models/Product.php');
+									require_once ('WebServiceSOAP/models/Product.php');
 									try {
 										$product = new Product ();
 										echo ($product->showListe ());
