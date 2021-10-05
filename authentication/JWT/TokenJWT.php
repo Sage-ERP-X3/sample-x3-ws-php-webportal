@@ -2,7 +2,7 @@
 
 require_once ('vendor/autoload.php');
 require_once ('config/Config.php');
-
+require_once ('tools-api/consolePHP.php');
 use Firebase\JWT\JWT;
 
 class TokenJWT {
@@ -39,6 +39,7 @@ class TokenJWT {
  * for a list of spec-compliant algorithms.
         */
         $jwt = JWT::encode($payload, $this->secretOrPrivateKey);
+        console_php_log('token',$jwt);
         return $jwt;
 
     }
