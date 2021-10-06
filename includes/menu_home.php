@@ -66,6 +66,25 @@
 						
 					</ul>
 				</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-expanded="false">Sage
+						<span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu" role="menu">
+					<?php
+					require_once ('config/Config.php');
+					$rootUrl = Config::$WEB_SERVER_X3;
+					$urlSageX3 = $rootUrl."/";
+					$urlSageX3ADC = $urlSageX3."handheld/";
+					$urlSageGraphiQL = $urlSageX3."xtrem/explorer/";
+					?>
+						<li><a href="<?php echo($urlSageX3);?>" target="_blank" style="text-transform: none; text-align: right;">App - Sage X3</a></li>
+						<li><a href="<?php echo($urlSageX3ADC);?>" target="_blank" style="text-transform: none; text-align: right;">App - Sage X3 ADC</a></li>
+						<li><a href="<?php echo($urlSageGraphiQL);?>" target="_blank" style="text-transform: none; text-align: right;">App - Sage GraphQL</a></li>
+						<li><a href="https://developer.sage.com/x3/graphql/" target="_blank" style="text-transform: none; text-align: right;">Doc - Sage Developer GraphQL</a></li>
+						<li><a href="https://online-help.sageerpx3.com/erp/12/" target="_blank" style="text-transform: none; text-align: right;">Doc - Sage X3 Online</a></li>
+					</ul>
+				</li>
 			</ul>
 
 		</div>
