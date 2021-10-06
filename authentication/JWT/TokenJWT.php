@@ -39,7 +39,7 @@ class TokenJWT {
  * for a list of spec-compliant algorithms.
         */
         $jwt = JWT::encode($payload, $this->secretOrPrivateKey);
-        console_php_log('token',$jwt);
+        //console_php_log('token',$jwt);
         return $jwt;
 
     }
