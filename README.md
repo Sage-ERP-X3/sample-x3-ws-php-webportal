@@ -1,5 +1,9 @@
 # PHP web portal connected with X3
 
+## Minimal version Sage X3
+
+For GraphQL : Sage X3 2021R4
+
 ## Objectives
 
 The objective of this portal is to show an example __outside of Sage X3__ 
@@ -87,7 +91,7 @@ __GraphQl query variables__
 #### Query GraphQL - Operation X3 read ( for the detail)
 
 ````graphql
-query mySpeDetail($id:String!){
+query mySpeDetail($id:Id!){
   xtremX3Purchasing {
     purchaseOrder {
       read(_id: $id) {
@@ -180,7 +184,7 @@ __GraphQl query variables__
 #### Query GraphQL - Operation X3 read ( for the detail)
 
 ````graphql
-query mySpeDetail($id:String!){
+query mySpeDetail($id:Id!){
   xtremX3Purchasing {
     purchaseReceipt {
       read(_id: $id) {
@@ -295,9 +299,4 @@ __GraphQl query variables__
 * No X3 sources
   
 * X3 specific patch for the SOAP web services
-
-
-## Remarks
-
-* X3 Version minimum  X3 2021R2
 
