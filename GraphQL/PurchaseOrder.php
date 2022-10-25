@@ -12,7 +12,7 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		$vars .='  "id": "'.$_id.'"';
 		$vars .='  }';
 		$response=$this->query($queryGraphQL,$vars);
-		
+		//console_php_log('GraphQL response',$response);
 		$json=json_decode($response);
 
 		
@@ -44,7 +44,8 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		$str .= "<div class='col-lg-3 col-md-2 col-sm-1'>";
 		$str .= "<label class='control-label' for='formsupplier'>Supplier</label>";
 		$str .= "<input class='form-control' name='formsupplier' type='text' placeholder='' value='";
-		$str .= $read->{'orderFromSupplier'}->{'code'};
+		// #5 : With the version X3 2022R3, crash menu X3 PURCHASING / LIST OF ORDERS
+		$str .= $read->{'orderFromSupplier'}->{'code'}->{'code'};
 		$str .= "' readonly >";
 		$str .= "</div>";
 
@@ -208,7 +209,8 @@ class PurchaseOrder extends ModelGraphQLX3 {
 			$str .= "</td>";
 	
 			$str .= "<td>". $node->{'purchaseSite'}->{'_id'} ." - ".$node->{'purchaseSite'}->{'name'}."</td>";
-			$str .= "<td>". $node->{'orderFromSupplier'}->{'code'}."</td>";
+			// #5 : With the version X3 2022R3, crash menu X3 PURCHASING / LIST OF ORDERS
+			$str .= "<td>". $node->{'orderFromSupplier'}->{'code'}->{'code'}."</td>";
 			$str .= "<td>". $node->{'internalOrderReference'}."</td>";
 			$str .= "<td>". $node->{'receiptStatus'}."</td>";
 			$str .= "<td>". $node->{'signatureStatus'}."</td>";

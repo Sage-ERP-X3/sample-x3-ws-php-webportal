@@ -11,7 +11,9 @@ query mySpeDetail($id:Id!){
           name
         }
         orderFromSupplier {
-          code
+          code {
+            code
+          }
         }
         internalOrderReference
         receiptStatus

@@ -104,6 +104,7 @@ class PurchaseReceipt extends ModelGraphQLX3 {
 		$vars = json_encode($arrayInput);
 		
 		$response=$this->query($queryGraphQL,$vars);
+		//console_php_log('GraphQL response',$response);
 		$json=json_decode($response);
 
 		
