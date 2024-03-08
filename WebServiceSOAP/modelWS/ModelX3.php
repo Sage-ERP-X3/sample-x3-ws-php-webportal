@@ -3,6 +3,7 @@ require_once ('WebServiceSOAP/modelWS/ModelWS.php');
 require_once ('config/Config.php');
 require_once ('authentication/JWT/TokenJWT.php');
 class ModelX3 {
+	public $CAdxResultXml;
 	public $soapClient;
 	/*
 	 * private $classmap = array(

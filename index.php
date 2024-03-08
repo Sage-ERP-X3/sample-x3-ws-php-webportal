@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,7 +30,7 @@
       $(function(){
     	  var isConnect = '<?PHP echo $isConnect;?>';
     	  set_icon_connect(isConnect);
-  // On peut acc�der aux �l�ments.
+  // On peut acceder aux elements.
   // $('#balise') marche.
    
   

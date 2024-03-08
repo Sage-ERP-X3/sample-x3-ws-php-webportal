@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -79,7 +80,7 @@
 												if ($tabQtyToReceive[$i]>0) {
 													$arrayLine[$i] = array (
 															"receiptSite"=>$receiptSite,
-															"purchaseOrder"=>$ordnum,
+															"purchaseOrderNumber"=>$ordnum,
 															"purchaseOrderLineNumber"=>$tabLineNumber[$i],
 															"product"=>$tabProduct[$i],
 															"receiptUnit"=>$tabBorderUnit[$i],

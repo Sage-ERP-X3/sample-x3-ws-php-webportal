@@ -74,7 +74,7 @@ class PurchaseReceipt extends ModelGraphQLX3 {
 			$str .= "</td>";
 			
 			$str .= "<td>";
-			$str .= $edge->{'node'}->{'purchaseOrder'};
+			$str .= $edge->{'node'}->{'purchaseOrder'}->{'id'};
 			$str .= "</td>";
 
 			$str .= "<td>";

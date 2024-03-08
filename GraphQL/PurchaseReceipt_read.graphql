@@ -18,7 +18,9 @@ query mySpeDetail($id:Id!){
                 _sortValue
                 _id
                 lineNumber
-                purchaseOrder
+                purchaseOrder {
+                  id
+                }
                 purchaseOrderLineNumber
                 purchaseOrderSequenceNumber
                 quantityInReceiptUnitReceived

@@ -5,8 +5,10 @@ class Config {
 	/*
 	 	Config Web server X3
 	*/
-
-	public static $WEB_SERVER_X3 = "...";
+	# no caracter "/" at the end.
+	# "http://<name webserevr X3>/" Not right
+	#public static $WEB_SERVER_X3 = "http://<name webserevr X3>";
+	public static $WEB_SERVER_X3 = "http://<name webserevr X3>";
 
 	/*
 	 	Config SOAP Web services X3 

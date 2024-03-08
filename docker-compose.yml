@@ -1,0 +1,9 @@
+services:
+    php:
+        build: ./build/php
+        volumes: 
+             - ./:/app
+        ports:
+             - 80:80
+volumes:
+     .:
