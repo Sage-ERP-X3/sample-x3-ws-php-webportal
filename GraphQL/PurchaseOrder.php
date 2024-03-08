@@ -192,7 +192,8 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		$vars .='  }';
 		$response=$this->query($queryGraphQL,$vars);
 		$json=json_decode($response);
-		#echo("$response".$response);
+		var_dump($response);
+
 		$edges = $json->{'data'}->{'xtremX3Purchasing'}->{'purchaseOrder'}->{'query'}->{'edges'};
 		$str = "<table class='table table-striped table-bordered table-condensed'>";
 		$str .= "<thead><tr><th>Order number</th><th>Site</th><th>Supplier</th><th>Internal order reference</th><th>Receipt status</th><th>Signature status</th><th>Is closed</th></tr></thead><tbody>";
