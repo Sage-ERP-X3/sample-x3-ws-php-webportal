@@ -1,6 +1,6 @@
 services:
     php:
-        build: ./build/php
+        build: ./docker/php
         volumes: 
              - ./:/app
         ports:
