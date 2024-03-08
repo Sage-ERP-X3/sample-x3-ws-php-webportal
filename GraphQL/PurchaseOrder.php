@@ -192,6 +192,7 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		$vars .='  }';
 		$response=$this->query($queryGraphQL,$vars);
 		var_dump($response);
+		console.log("$response",$response)
 		$json=json_decode($response);
 		var_dump($json);
 
