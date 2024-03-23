@@ -38,7 +38,7 @@ class TokenJWT {
  * https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40
  * for a list of spec-compliant algorithms.
         */
-        $jwt = JWT::encode($payload, $this->secretOrPrivateKey);
+        $jwt = JWT::encode($payload, $this->secretOrPrivateKey,'HS256');
         //console_php_log('token',$jwt);
         return $jwt;
 

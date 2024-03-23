@@ -1,9 +1,12 @@
 services:
-    php:
-        build: ./docker/php
-        volumes: 
-             - ./:/app
-        ports:
-             - 80:80
+  php-dev:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+      target: dev-sage
+    volumes:
+      - ./:/app
+    ports:
+      - 80:80
 volumes:
-     .:
+  .:

@@ -11,8 +11,11 @@ class ModelGraphQLX3 {
 	
 	
 	public function query($queryGraphQL, $variables='{}') {
+       
         $curl = curl_init();
-        $token = $this->jwt->getToken();  
+        //var_dump($curl);
+        $token = $this->jwt->getToken(); 
+        //var_dump($token); 
         $graphQLServer = Config::$WEB_SERVER_X3 . "/xtrem/api";   
         curl_setopt_array($curl, array(
             CURLOPT_URL =>  $graphQLServer,
@@ -21,7 +24,7 @@ class ModelGraphQLX3 {
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 0,
             CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_NONE,
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS =>'{"query":"'.$queryGraphQL.'","variables":'.$variables.'}',
             CURLOPT_HTTPHEADER => array(
@@ -32,11 +35,15 @@ class ModelGraphQLX3 {
 	
             ),
         ));
+        
         console_php_log('GraphQL query',$queryGraphQL);
         console_php_log('GraphQL variables',$variables);
         $response = curl_exec($curl);
+        //var_dump(curl_getinfo($curl));
+        #var_dump($response);
         //console_php_log('GraphQL response',$response);
         curl_close($curl);
+        //var_dump(curl_error($curl));
 		return $response;
 	}
 	
