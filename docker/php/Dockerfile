@@ -23,11 +23,11 @@ COPY conf/apache.conf /etc/apache2/conf-available/z-app.conf
 RUN a2enmod rewrite remoteip && \
     a2enconf z-app
     
-FROM base as dev-sage
+FROM base as dev-custom-root-ca
 
-COPY conf/Sage-Cisco-Umbrella-Root-CA.crt .
+COPY conf/custom-Root-CA.crt .
 
-RUN mv Sage-Cisco-Umbrella-Root-CA.crt /etc/ssl/certs/ca-certificates.crt
+RUN mv custom-Root-CA.crt /etc/ssl/certs/ca-certificates.crt
 
 COPY conf/php.ini-development /usr/local/etc/php/conf.d/php.ini
 

@@ -1,1 +1,2 @@
 config/Config.php
+docker/php/conf/*.crt
