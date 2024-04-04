@@ -54,7 +54,8 @@ class ModelGraphQLX3 {
         $queryGraphQL=fread($fileOpen, filesize($file));
 		fclose($fileOpen);
         if ($replace==true) {
-            $queryGraphQL = str_replace("\r\n","",$queryGraphQL);
+            $queryGraphQL = str_replace("\r","",$queryGraphQL);
+            $queryGraphQL = str_replace("\n","",$queryGraphQL);
 		    $queryGraphQL = str_replace('"','\"',$queryGraphQL);
         }
 		

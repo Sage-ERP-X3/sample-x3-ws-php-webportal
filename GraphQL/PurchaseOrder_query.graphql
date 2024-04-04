@@ -1,24 +1,29 @@
 query mySpeList($first: Int!, $filter: String, $orderBy: String) {
-    xtremX3Purchasing {
-        purchaseOrder {
-            query(first: $first, filter: $filter, orderBy: $orderBy) {
-                edges {
-                    node {
-                        _id purchaseSite {
-                            name _id
-                        }
-                        receiptSite {
-                            name
-                        }
-                        orderFromSupplier {
-                            code{
-                              code
-                            }
-                        }
-                        internalOrderReference receiptStatus signatureStatus isClosed
-                    }
-                }
+  xtremX3Purchasing {
+    purchaseOrder {
+      query(first: $first, filter: $filter, orderBy: $orderBy) {
+        edges {
+          node {
+            _id
+            purchaseSite {
+              name
+              _id
             }
+            receiptSite {
+              name
+            }
+            orderFromSupplier {
+              code {
+                code
+              }
+            }
+            internalOrderReference
+            receiptStatus
+            signatureStatus
+            isClosed
+          }
         }
+      }
     }
+  }
 }
