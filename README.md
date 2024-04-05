@@ -2,32 +2,32 @@
 
 ## Minimal version Sage X3
 
-For GraphQL : Sage X3 2021R4
+For GraphQL : Sage X3 2023R2
 
 ## Objectives
 
-The objective of this portal is to show an example __outside of Sage X3__ 
-which uses __X3 web services__ and __GraphQL api__. 
+The objective of this portal is to show an example **outside of Sage X3**
+which uses **X3 web services** and **GraphQL api**.
 
- * This is an example for __Presales or for developers__. 
- * This is __not__ a portal to put __into production__.
- * This portal is used for the __Bootcamp__ on the Sage X3 web services offered by the __Sage COEX team__.
-  
+- This is an example for **Presales or for developers**.
+- This is **not** a portal to put **into production**.
+- This portal is used for the **Bootcamp** on the Sage X3 web services offered by the **Sage COEX team**.
+
 ## Using Sage SOAP web services X3
- 
- * Sales orders for reading (List and Detail) and for writing into Sage X3
- * Products     for reading (List and Detail) 
- * Available Stock
 
-## Using New authentication __Connected applications__
- 
- * No more authentication in __basic HTTP__
- * Use of Standard __JSON Web Tokens__ (JWT)
+- Sales orders for reading (List and Detail) and for writing into Sage X3
+- Products for reading (List and Detail)
+- Available Stock
+
+## Using New authentication **Connected applications**
+
+- No more authentication in **basic HTTP**
+- Use of Standard **JSON Web Tokens** (JWT)
 
 ## Using Sage GraphQL api
 
- * Purchasing orders ( List and Detail)
- * Purchasing receipts ( List, Detail and __Creation__)
+- Purchasing orders ( List and Detail)
+- Purchasing receipts ( List, Detail and **Creation**)
 
 ## Use GraphQL queries with the UI graphql api
 
@@ -39,20 +39,19 @@ which uses __X3 web services__ and __GraphQL api__.
 
 ![Mutation mySpeCreate](/docimg/mutation.png)
 
-
 ## Description of GraphQl queries
 
 ### Purchase orders
 
 #### Query GraphQL - Operation X3 query ( for the list)
 
-__myspelist__ is a operation created for using parameters
+**myspelist** is a operation created for using parameters
 
-````graphql
-query mySpeList($first: Int!,$filter:String, $orderBy: String) {
+```graphql
+query mySpeList($first: Int!, $filter: String, $orderBy: String) {
   xtremX3Purchasing {
     purchaseOrder {
-      query (first:$first,filter:$filter,orderBy:$orderBy){
+      query(first: $first, filter: $filter, orderBy: $orderBy) {
         edges {
           node {
             _id
@@ -76,22 +75,22 @@ query mySpeList($first: Int!,$filter:String, $orderBy: String) {
     }
   }
 }
-````
+```
 
-__GraphQl query variables__
+**GraphQl query variables**
 
-````json
+```json
 {
   "first": 50,
   "filter": "[{orderFromSupplier:{_id:'CN001'}},{purchaseSite:{_id:'FR011'}},{receiptStatus:'no'}]",
   "orderBy": "{purchaseSite:{_id:-1},_id:-1}"
 }
-````
+```
 
 #### Query GraphQL - Operation X3 read ( for the detail)
 
-````graphql
-query mySpeDetail($id:Id!){
+```graphql
+query mySpeDetail($id: Id!) {
   xtremX3Purchasing {
     purchaseOrder {
       read(_id: $id) {
@@ -134,22 +133,22 @@ query mySpeDetail($id:Id!){
     }
   }
 }
-````
+```
 
-__GraphQl query variables__
+**GraphQl query variables**
 
-````json
+```json
 {
   "id": "POFR0110113"
 }
-````
+```
 
 ### Purchase receipts
 
 #### Query GraphQL - Operation X3 query ( for the list)
 
-````graphql
-query mySpeList($filter: String, $orderBy: String){
+```graphql
+query mySpeList($filter: String, $orderBy: String) {
   xtremX3Purchasing {
     purchaseReceipt {
       query(filter: $filter, orderBy: $orderBy) {
@@ -170,21 +169,21 @@ query mySpeList($filter: String, $orderBy: String){
     }
   }
 }
-````
+```
 
-__GraphQl query variables__
+**GraphQl query variables**
 
-````json
+```json
 {
   "filter": "{lines:{_every:true,purchaseOrder:'POFR0110113'}}",
   "orderBy": "{id:-1}"
 }
-````
+```
 
 #### Query GraphQL - Operation X3 read ( for the detail)
 
-````graphql
-query mySpeDetail($id:Id!){
+```graphql
+query mySpeDetail($id: Id!) {
   xtremX3Purchasing {
     purchaseReceipt {
       read(_id: $id) {
@@ -214,22 +213,21 @@ query mySpeDetail($id:Id!){
         }
       }
     }
-    
   }
 }
-````
+```
 
-__GraphQl query variables__
+**GraphQl query variables**
 
-````json
+```json
 {
   "id": "RECFR0110094"
 }
-````
+```
 
 #### Mutation GraphQL - Operation X3 create ( for the creation)
 
-````graphql
+```graphql
 mutation mySpeCreate($data: PurchaseReceipt_Input!) {
   xtremX3Purchasing {
     purchaseReceipt {
@@ -239,11 +237,11 @@ mutation mySpeCreate($data: PurchaseReceipt_Input!) {
     }
   }
 }
-````
+```
 
-__GraphQl query variables__
+**GraphQl query variables**
 
-````json
+```json
 {
   "data": {
     "receiptSite": "FR011",
@@ -279,7 +277,7 @@ __GraphQl query variables__
     ]
   }
 }
-````
+```
 
 ## Using Web Sage design
 
@@ -287,16 +285,13 @@ __GraphQl query variables__
 
 ## Setup X3 only for SOAP web services
 
-* Unzip V12.zip in X3/PATCH_X3
-* Install patch X3 SRC_SVG_WEB_PHP_YYYYMMDD_NN from X3/PATCH_X3/V12
-* Publish the web services YOSOH, YOITM and YSTOCK_LOT
-	
+- Unzip V12.zip in X3/PATCH_X3
+- Install patch X3 SRC_SVG_WEB_PHP_YYYYMMDD_NN from X3/PATCH_X3/V12
+- Publish the web services YOSOH, YOITM and YSTOCK_LOT
 
 ## Features
 
-* PHP source
+- PHP source
 
-* No X3 sources
-  
-* X3 specific patch for the SOAP web services
-
+- No X3 sources
+- X3 specific patch for the SOAP web services
