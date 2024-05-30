@@ -16,7 +16,7 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		$json=json_decode($response);
 
 		
-		$read = $json->{'data'}->{'xtremX3Purchasing'}->{'purchaseOrder'}->{'read'};
+		$read = $json->{'data'}->{'x3Purchasing'}->{'purchaseOrder'}->{'read'};
         
 
 		if (is_null($read)) {
@@ -121,13 +121,14 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		$vars  ='';
 		$vars .='{';
 		#$vars .='"filter": "{lines:{_every:true,purchaseOrder:\''.$_id.'\'}}",';
-		$vars .='"filter": "{lines:{_every:true,purchaseOrderNumber:\''.$_id.'\'}}",';
-		$vars .='"orderBy":"{id:-1}"';
+		#$vars .='"filter": "{lines:{_every:true,purchaseOrderNumber:\''.$_id.'\'}}",';
+		$vars .='"filter": "{purchaseOrder:{_id:\''.$_id.'\'}}",';
+		$vars .='"orderBy":"{_id:-1}"';
 		$vars .='  }';
 		$response=$this->query($queryGraphQL,$vars);
 		$json=json_decode($response);
 
-		$query = $json->{'data'}->{'xtremX3Purchasing'}->{'purchaseReceipt'}->{'query'};
+		$query = $json->{'data'}->{'x3Purchasing'}->{'purchaseReceiptLine'}->{'query'};
         
 		$str = "";
 		
@@ -143,12 +144,13 @@ class PurchaseOrder extends ModelGraphQLX3 {
 			$str .= "</td>";
 
 			$str .= "<td>";
-			$val= $edge->{'node'}->{'id'};
+			$val= $edge->{'node'}->{'_id'};
 			$str .= '<a href="page_pth_gq_read.php?_id='.$val.'">'.$val.'</a>';
 			$str .= "</td>";
 			
 			$str .= "<td>";
 			$str .= $edge->{'node'}->{'receiptSite'}->{'_id'}." - ".$edge->{'node'}->{'receiptSite'}->{'name'};
+			
 			$str .= "</td>";
 
 			$str .= "<td>";
@@ -196,7 +198,7 @@ class PurchaseOrder extends ModelGraphQLX3 {
 		$json=json_decode($response);
 		//var_dump($json);
 
-		$edges = $json->{'data'}->{'xtremX3Purchasing'}->{'purchaseOrder'}->{'query'}->{'edges'};
+		$edges = $json->{'data'}->{'x3Purchasing'}->{'purchaseOrder'}->{'query'}->{'edges'};
 		$str = "<table class='table table-striped table-bordered table-condensed'>";
 		$str .= "<thead><tr><th>Order number</th><th>Site</th><th>Supplier</th><th>Internal order reference</th><th>Receipt status</th><th>Signature status</th><th>Is closed</th></tr></thead><tbody>";
 	

@@ -31,7 +31,7 @@ RUN mv custom-Root-CA.crt /etc/ssl/certs/ca-certificates.crt
 
 COPY conf/php.ini-development /usr/local/etc/php/conf.d/php.ini
 
-FROM base as dev-myx3
+FROM base as dev-default
 
 COPY conf/php.ini-development /usr/local/etc/php/conf.d/php.ini
 

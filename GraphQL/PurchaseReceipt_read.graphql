@@ -1,5 +1,5 @@
-query mySpeDetail($id:Id!){
-  xtremX3Purchasing {
+query mySpeDetail($id: Id!) {
+  x3Purchasing {
     purchaseReceipt {
       read(_id: $id) {
         id
@@ -15,14 +15,15 @@ query mySpeDetail($id:Id!){
           query {
             edges {
               node {
-                _sortValue
                 _id
                 lineNumber
                 purchaseOrder {
                   id
                 }
-                purchaseOrderLineNumber
-                purchaseOrderSequenceNumber
+                purchaseOrderLine {
+                  lineNumber
+                  sequenceNumber
+                }
                 quantityInReceiptUnitReceived
               }
             }
@@ -30,6 +31,5 @@ query mySpeDetail($id:Id!){
         }
       }
     }
-    
   }
 }

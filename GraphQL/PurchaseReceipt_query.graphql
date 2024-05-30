@@ -1,16 +1,20 @@
-query mySpeList($filter: String, $orderBy: String){
-  xtremX3Purchasing {
-    purchaseReceipt {
+query mySpeList($filter: String, $orderBy: String) {
+  x3Purchasing {
+    purchaseReceiptLine {
       query(filter: $filter, orderBy: $orderBy) {
         edges {
           node {
-            id
             receiptSite {
               _id
               name
             }
+            _id
+            lineNumber
             receiptDate
             supplier {
+              _id
+            }
+            purchaseOrder {
               _id
             }
           }

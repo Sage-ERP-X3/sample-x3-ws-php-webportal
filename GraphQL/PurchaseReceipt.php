@@ -21,7 +21,7 @@ class PurchaseReceipt extends ModelGraphQLX3 {
 		$json=json_decode($response);
 
 		
-		$read = $json->{'data'}->{'xtremX3Purchasing'}->{'purchaseReceipt'}->{'read'};
+		$read = $json->{'data'}->{'x3Purchasing'}->{'purchaseReceipt'}->{'read'};
         //var_dump($read);
 
 		if (is_null($read)) {
@@ -78,11 +78,11 @@ class PurchaseReceipt extends ModelGraphQLX3 {
 			$str .= "</td>";
 
 			$str .= "<td>";
-			$str .= $edge->{'node'}->{'purchaseOrderLineNumber'};
+			$str .= $edge->{'node'}->{'purchaseOrderLine'}->{'lineNumber'};
 			$str .= "</td>";
 
 			$str .= "<td>";
-			$str .= $edge->{'node'}->{'purchaseOrderSequenceNumber'};
+			$str .= $edge->{'node'}->{'purchaseOrderLine'}->{'sequenceNumber'};
 			$str .= "</td>";
 
 			$str .= "<td>";
@@ -108,7 +108,7 @@ class PurchaseReceipt extends ModelGraphQLX3 {
 		$json=json_decode($response);
 
 		
-		$create = $json->{'data'}->{'xtremX3Purchasing'}->{'purchaseReceipt'}->{'create'};
+		$create = $json->{'data'}->{'x3Purchasing'}->{'purchaseReceipt'}->{'create'};
         
 		if (is_null($create)) {
 			return ToolsWS::getError ( "unsuccessful creation" );

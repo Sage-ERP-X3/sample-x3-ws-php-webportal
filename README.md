@@ -49,7 +49,7 @@ which uses **X3 web services** and **GraphQL api**.
 
 ```graphql
 query mySpeList($first: Int!, $filter: String, $orderBy: String) {
-  xtremX3Purchasing {
+  x3Purchasing {
     purchaseOrder {
       query(first: $first, filter: $filter, orderBy: $orderBy) {
         edges {
@@ -91,7 +91,7 @@ query mySpeList($first: Int!, $filter: String, $orderBy: String) {
 
 ```graphql
 query mySpeDetail($id: Id!) {
-  xtremX3Purchasing {
+  x3Purchasing {
     purchaseOrder {
       read(_id: $id) {
         _id
@@ -149,7 +149,7 @@ query mySpeDetail($id: Id!) {
 
 ```graphql
 query mySpeList($filter: String, $orderBy: String) {
-  xtremX3Purchasing {
+  x3Purchasing {
     purchaseReceipt {
       query(filter: $filter, orderBy: $orderBy) {
         edges {
@@ -184,7 +184,7 @@ query mySpeList($filter: String, $orderBy: String) {
 
 ```graphql
 query mySpeDetail($id: Id!) {
-  xtremX3Purchasing {
+  x3Purchasing {
     purchaseReceipt {
       read(_id: $id) {
         id
@@ -229,7 +229,7 @@ query mySpeDetail($id: Id!) {
 
 ```graphql
 mutation mySpeCreate($data: PurchaseReceipt_Input!) {
-  xtremX3Purchasing {
+  x3Purchasing {
     purchaseReceipt {
       create(data: $data) {
         id

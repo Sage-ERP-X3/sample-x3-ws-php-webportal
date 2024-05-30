@@ -1,5 +1,5 @@
-query mySpeDetail($id:Id!){
-  xtremX3Purchasing {
+query mySpeDetail($id: Id!) {
+  x3Purchasing {
     purchaseOrder {
       read(_id: $id) {
         _id

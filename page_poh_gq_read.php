@@ -80,7 +80,7 @@
 												if ($tabQtyToReceive[$i]>0) {
 													$arrayLine[$i] = array (
 															"receiptSite"=>$receiptSite,
-															"purchaseOrderNumber"=>$ordnum,
+															"purchaseOrder"=>$ordnum,
 															"purchaseOrderLineNumber"=>$tabLineNumber[$i],
 															"product"=>$tabProduct[$i],
 															"receiptUnit"=>$tabBorderUnit[$i],

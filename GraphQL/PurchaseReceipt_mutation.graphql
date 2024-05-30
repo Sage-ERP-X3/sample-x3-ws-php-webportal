@@ -1,5 +1,5 @@
 mutation mySpeCreate($data: PurchaseReceipt_Input!) {
-  xtremX3Purchasing {
+  x3Purchasing {
     purchaseReceipt {
       create(data: $data) {
         id

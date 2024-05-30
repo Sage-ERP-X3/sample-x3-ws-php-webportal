@@ -1,5 +1,5 @@
 query mySpeList($first: Int!, $filter: String, $orderBy: String) {
-  xtremX3Purchasing {
+  x3Purchasing {
     purchaseOrder {
       query(first: $first, filter: $filter, orderBy: $orderBy) {
         edges {

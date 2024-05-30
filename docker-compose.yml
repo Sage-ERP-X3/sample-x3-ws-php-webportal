@@ -3,7 +3,7 @@ services:
     build:
       context: ./docker/php
       dockerfile: Dockerfile
-      target: dev-custom-root-ca
+      target: dev-default
     volumes:
       - ./:/app
     ports:
