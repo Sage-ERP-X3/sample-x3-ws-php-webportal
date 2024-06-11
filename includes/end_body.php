@@ -6,7 +6,7 @@
 
 <!-- Plugin JavaScript -->
 <script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
 	type="text/javascript"></script>
 <script src="js/classie.js" type="text/javascript"></script>
 <script src="js/cbpAnimatedHeader.js" type="text/javascript"></script>
