@@ -4,10 +4,14 @@
 
 ### Objective 1 - branch Github - master
 
+- [https://github.com/Sage-ERP-X3/sample-x3-ws-php-webportal](https://github.com/Sage-ERP-X3/sample-x3-ws-php-webportal)
+
 From a single portal php how can we use the **X3 SOAP web service** sales orders for reading and writing into Sage X3 ?
 
 ### Objective 2 - branch Github - ws-graphql
 
+- [https://github.com/Sage-ERP-X3/sample-x3-ws-php-webportal/tree/ws-graphql](https://github.com/Sage-ERP-X3/sample-x3-ws-php-webportal/tree/ws-graphql)
+  
 The objective of this portal is to show an example outside of Sage X3 which uses **X3 SOAP web services** and **GraphQL api**.
 
 ## Documentation ENG
