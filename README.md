@@ -10,13 +10,13 @@
   - [Option 1 - With the Web server **Wampserver**](#option-1---with-the-web-server-wampserver)
   - [Option 2 - with **Docker** on you local machine](#option-2---with-docker-on-you-local-machine)
     - [Prerequis on your local machine outside Sage X3](#prerequis-on-your-local-machine-outside-sage-x3)
+    - [Install and configure the PHP Web portal](#install-and-configure-the-php-web-portal)
+      - [Download the PHP web portal project files](#download-the-php-web-portal-project-files)
+      - [Configure the portal](#configure-the-portal)
     - [Configure the X3 server and the pool of Web services](#configure-the-x3-server-and-the-pool-of-web-services)
     - [Install the X3 application patch](#install-the-x3-application-patch)
       - [Integrate X3 patch](#integrate-x3-patch)
       - [Publish the Web service](#publish-the-web-service)
-    - [Install and configure the PHP Web portal](#install-and-configure-the-php-web-portal)
-      - [Download the PHP web portal project files](#download-the-php-web-portal-project-files)
-      - [Configure the portal](#configure-the-portal)
       - [Execute the web portal with Docker](#execute-the-web-portal-with-docker)
       - [Stop the web portal with Docker](#stop-the-web-portal-with-docker)
 - [Details](#details)
@@ -77,7 +77,7 @@ Copy the secret to keep in a text file
 
 > We have two options to execute this Web Portal     
 > - Option 1 : with the Web server **Wampserver**
-> - Option 2 : with **Docker** on you local machine
+> - Option 2 : with **Docker** on your local machine
 
 ### Option 1 - With the Web server **Wampserver**
 
@@ -91,33 +91,6 @@ See [Create_a_WebPortal_SageX3_WebServices_ENG.pdf](./doc/pdf/Create_a_WebPortal
 
 - **Docker** installed
 - **vscode** installed
-
-#### Configure the X3 server and the pool of Web services
-
-> **The pool of webservice** only mandatory for Soap Web services
-
-Take into account the different parts in this document [Create_a_WebPortal_SageX3_WebServices_ENG.pdf](./doc/pdf/Create_a_WebPortal_SageX3_WebServices_ENG.pdf).           
-
-- Configure the server and the pool of Web services
-
-#### Install the X3 application patch
-
-> **Mandatory** if you want test the SOAP Web services
-
-##### Integrate X3 patch
-
-You need to install the patch containing the YOSOH web services. The file was downloaded in the ZIP file from GitHub.
-The name of file is SRC_SVG_WEB_PHP_YYYYMMDD_NN.dat. It is in the following directory: C:\webportal\sample-x3-ws-php-webportal-ws-graphql\X3\PATCH_X3\V12.
-
-![alt text](./readme-img/image-5.png)
-
-> **Important!** You can only install the patch on the SEED folder, not the application folder.
-
-##### Publish the Web service
-
-After installing the patch with the web service, you need to publish the service. This validates the web service so that it is visible.
-In the application, navigate to Development > Script dictionary > Scripts and open Web services (GESAWE).
-Cliquez sur Publication globale.
 
 #### Install and configure the PHP Web portal
 
@@ -217,6 +190,33 @@ class Config {
 
 
 > Important! Do not change the punctuation and formatting.
+
+#### Configure the X3 server and the pool of Web services
+
+> **The pool of webservice** only mandatory for Soap Web services
+
+Take into account the different parts in this document [Create_a_WebPortal_SageX3_WebServices_ENG.pdf](./doc/pdf/Create_a_WebPortal_SageX3_WebServices_ENG.pdf).           
+
+- Configure the server and the pool of Web services
+
+#### Install the X3 application patch
+
+> **Mandatory** if you want test the SOAP Web services
+
+##### Integrate X3 patch
+
+You need to install the patch containing the YOSOH web services. The file was downloaded in the ZIP file from GitHub.
+The name of file is SRC_SVG_WEB_PHP_YYYYMMDD_NN.dat. It is in the following directory: C:\webportal\sample-x3-ws-php-webportal-ws-graphql\X3\PATCH_X3\V12.
+
+![alt text](./readme-img/image-5.png)
+
+> **Important!** You can only install the patch on the SEED folder, not the application folder.
+
+##### Publish the Web service
+
+After installing the patch with the web service, you need to publish the service. This validates the web service so that it is visible.
+In the application, navigate to Development > Script dictionary > Scripts and open Web services (GESAWE).
+Cliquez sur Publication globale.
 
 
 ##### Execute the web portal with Docker
