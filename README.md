@@ -61,7 +61,7 @@ which uses **SOAP X3 web services** and **GraphQL api**.
 
 New connected applications
 
-![alt text]()(./readme-img/image-3.png)
+![alt text](./readme-img/image-3.png)
 
 Save
 
