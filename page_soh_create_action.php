@@ -52,6 +52,7 @@
 																				$WS .= "<FLD NAME=\"ORDDAT\">$newDate</FLD>";
 																				$WS .= "<FLD NAME=\"CUR\">$formcur</FLD>";
 																				$WS .= "<FLD NAME=\"BPCORD\">$formbpcord</FLD>";
+																				$WS .= "<FLD NAME=\"CUSORDREF\">WEBPHP</FLD>";
 																				$WS .= "</GRP>";
 																				$WS.="<GRP ID=\"SOH2_1\" >";
 																				$WS .= "<FLD NAME=\"STOFCY\">$formsalfcy</FLD>";
