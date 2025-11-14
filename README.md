@@ -100,7 +100,7 @@ See [Create_a_WebPortal_SageX3_WebServices_ENG.pdf](./doc/pdf/Create_a_WebPortal
 
 - The project file for the PHP web portal is available from GitHub. The project file is open to everyone, so you do not need a GitHub account. The download file contains everything you need to create and configure the portal including the **application X3 patch** for the YOSOH web service.
 
-- From GitHub https://github.com/Sage-ERP-X3/sample-x3-ws-php-webportal/tree/ws-graphql, 
+- From GitHub https://github.com/Sage-ERP-X3/sample-x3-ws-php-master, 
 - Click Code / Download ZIP
 
 ![](./readme-img/image.png)
@@ -108,7 +108,7 @@ See [Create_a_WebPortal_SageX3_WebServices_ENG.pdf](./doc/pdf/Create_a_WebPortal
 
 Be sure to download the ZIP file.
 
-Save the **sample-x3-ws-php-webportal-ws-graphql.zip** file to your local folder: **C:\webportal**.
+Save the **sample-x3-ws-php-webportal-master.zip** file to your local folder: **C:\webportal**.
 Extract all files to **C:\webportal**.
 
 ![alt text](./readme-img/image-2.png)
