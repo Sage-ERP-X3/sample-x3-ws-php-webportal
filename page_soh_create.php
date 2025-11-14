@@ -1,4 +1,4 @@
-
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,7 +13,7 @@
 <body role="document">
 	<?php include("includes/menu_home.php"); ?>
 	
-	<header>
+	<header style="border-bottom: 10px solid #00e14b;">
 		<div class="container">
 			<div class="intro-text">
 				<div class="intro-heading">Creation of a X3 order</div>
@@ -29,7 +29,7 @@
 			<div class="row">
 				<div class="col-lg-9 col-md-5 col-sm-3 text-center">
 				<?php
-				require_once ('WebService/modelWS/ModelWS.php');
+				require_once ('WebServiceSOAP/modelWS/ModelWS.php');
 				
 				if ($isConnect) {
 					// ToolsWS::printSucces ( "connexion reussie" );

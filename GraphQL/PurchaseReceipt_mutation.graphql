@@ -1,0 +1,9 @@
+mutation mySpeCreate($data: PurchaseReceipt_Input!) {
+  x3Purchasing {
+    purchaseReceipt {
+      create(data: $data) {
+        id
+      }
+    }
+  }
+}

@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,7 +13,7 @@
 <body role="document">
 	<?php include("includes/menu_home.php"); ?>
 	
-	<header>
+	<header style="border-bottom: 10px solid #00e14b;">
 		<div class="container">
 			<div class="intro-text">
 				<div class="intro-heading">Read a X3 order</div>
@@ -59,7 +60,7 @@
 							
 									<?php
 									
-									require_once ('WebService/models/Order.php');
+									require_once ('WebServiceSOAP/models/Order.php');
 									if (isset ( $_POST ["formsohnum"] )) {
 										$sohnum = $_POST ['formsohnum'];
 										try {

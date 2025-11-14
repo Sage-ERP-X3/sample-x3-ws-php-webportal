@@ -1,0 +1,12 @@
+services:
+  php-dev:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+      target: dev-default
+    volumes:
+      - ./:/app
+    ports:
+      - 80:80
+volumes:
+  .:

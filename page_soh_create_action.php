@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -32,7 +33,7 @@
 
 					
                     <?php
-																				require_once ('WebService/models/Order.php');
+																				require_once ('WebServiceSOAP/models/Order.php');
 																				// echo "</BR>";
 																				$formsalfcy = $_POST ['formsalfcy'];
 																				$formsohtyp = $_POST ['formsohtyp'];
@@ -52,10 +53,10 @@
 																				$WS .= "<FLD NAME=\"CUR\">$formcur</FLD>";
 																				$WS .= "<FLD NAME=\"BPCORD\">$formbpcord</FLD>";
 																				$WS .= "</GRP>";
-																				$WS .= "<GRP ID=\"SOH2_1\" >";
+																				$WS.="<GRP ID=\"SOH2_1\" >";
 																				$WS .= "<FLD NAME=\"STOFCY\">$formsalfcy</FLD>";
 																				$WS .= "</GRP>";
-																				$WS .= "<TAB ID=\"SOH4_1\">";
+																				$WS.="<TAB ID=\"SOH4_1\">";
 																				for($i = 0; $i < count ( $formtabitmref ); $i ++) {
 																					$WS .= "<LIN>";
 																					$WS .= "<FLD NAME=\"ITMREF\">$formtabitmref[$i]</FLD>";

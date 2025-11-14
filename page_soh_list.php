@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,7 +12,7 @@
 <body role="document">
     <?php include("includes/menu_home.php"); ?>
 	
-<header>
+<header style="border-bottom: 10px solid #00e14b;">
 		<div class="container">
 			<div class="intro-text">
 				<div class="intro-heading">List of X3 orders</div>
@@ -34,14 +35,13 @@
 
 																				
 									<?php
-									require_once ('WebService/models/Order.php');
+									require_once ('WebServiceSOAP/models/Order.php');
 									try {
 										$order = new Order ();
 										echo ($order->showListe ());
 									} catch ( SoapFault $e ) {
-										//echo var_dump($e);
-										//echo "ol50".$e;
-										ToolsWS::printError ( "X3 Web service not available" );
+										echo($e);
+									ToolsWS::printError ( "X3 Web service not available" );
 									}
 									?>
 								

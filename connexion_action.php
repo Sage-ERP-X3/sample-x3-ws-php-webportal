@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -30,8 +31,8 @@
 
 					
                     <?php
-																				require_once ('WebService/models/Connect.php');
-																				require_once ('WebService/modelWS/ToolsWS.php');
+																				require_once ('WebServiceSOAP/models/Connect.php');
+																				require_once ('tools-api/ToolsWS.php');
 																				
 																				$formlogin = $_POST ['formlogin'];
 																				$formpasswd = $_POST ['formpasswd'];
@@ -39,7 +40,7 @@
 																				$x3Connect = new Connect ( $formlogin, $formpasswd );
 																				$isConnect = $x3Connect->isConnect ();
 																				if ($isConnect) {
-																					// $_SESSION ["x3Connect"] = $x3Connect;
+																					//$_SESSION ["x3Connect"] = $x3Connect;
 																					$_SESSION ["x3login"] = $formlogin;
 																					$_SESSION ["x3passwd"] = $formpasswd;
 																					ToolsWS::printSucces ( "Successful connection" );

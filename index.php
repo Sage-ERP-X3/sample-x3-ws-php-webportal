@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,7 +9,7 @@
 <title>X3 Web services - Home</title>
 </head>
 
-<body id="page-top" class="index">
+<body id="page-top" class="index" style="border-bottom: 10px solid #00e14b;">
 	<?php include("includes/menu_home.php"); ?>
 	<header>
 		<div class="container">
@@ -30,7 +31,7 @@
       $(function(){
     	  var isConnect = '<?PHP echo $isConnect;?>';
     	  set_icon_connect(isConnect);
-  // On peut accéder aux éléments.
+  // On peut acceder aux elements.
   // $('#balise') marche.
    
   

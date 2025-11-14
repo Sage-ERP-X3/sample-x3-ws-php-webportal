@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -30,13 +31,13 @@
 
 					
                     <?php
-																				// require_once ('WebService/models/Connect.php');
-																				require_once ('WebService/modelWS/ToolsWS.php');
-																				$isConnect = false;
+																				//require_once ('WebServiceSOAP/models/Connect.php');
+																				require_once ('tools-api/ToolsWS.php');
+																				$isConnect=false;
 																				$_SESSION ["x3login"] = "";
 																				$_SESSION ["x3passwd"] = "";
 																				
-																				ToolsWS::printSucces ( "Successful log off" );
+																				ToolsWS::printSucces( "Successful log off" );
 																				?>
 								
                    

@@ -1,0 +1,45 @@
+query mySpeDetail($id: Id!) {
+  x3Purchasing {
+    purchaseOrder {
+      read(_id: $id) {
+        _id
+        purchaseSite {
+          name
+          _id
+        }
+        receiptSite {
+          name
+        }
+        orderFromSupplier {
+          code {
+            code
+          }
+        }
+        internalOrderReference
+        receiptStatus
+        signatureStatus
+        isClosed
+        _createStamp
+        _updateStamp
+        purchaseOrderLines {
+          query {
+            edges {
+              node {
+                lineNumber
+                product {
+                  code
+                  description1
+                }
+                quantityInOrderUnitOrdered
+                quantityInStockUnitReceived
+                orderUnit {
+                  code
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 <?php
-session_start ();
 
-require_once ('WebService/models/Connect.php');
+require_once ('WebServiceSOAP/models/Connect.php');
+require_once ('tools-api/ToolsWS.php');
 $isConnect = false;
 if (isset ( $_SESSION ["x3login"] )) {
 	$x3login = $_SESSION ["x3login"];
@@ -19,8 +19,12 @@ if (isset ( $_SESSION ["x3login"] )) {
 
 <!-- Custom CSS -->
 <link href="css/agency.css" rel="stylesheet">
+<!-- Custom CSS Benjamin-->
+<link href="css/benjamin.css" rel="stylesheet">
+<!-- Custom CSS Sage Benjamin-->
+<link href="css/sagebenj.css" rel="stylesheet">
 <!-- Custom CSS Sage-->
-<link href="css/sage.css" rel="stylesheet">
+<!--<link href="css/sage.css" rel="stylesheet">-->
 
 <!-- Custom Fonts -->
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"

@@ -1,0 +1,35 @@
+query mySpeDetail($id: Id!) {
+  x3Purchasing {
+    purchaseReceipt {
+      read(_id: $id) {
+        id
+        receiptSite {
+          _id
+          name
+        }
+        receiptDate
+        supplier {
+          _id
+        }
+        lines {
+          query {
+            edges {
+              node {
+                _id
+                lineNumber
+                purchaseOrder {
+                  id
+                }
+                purchaseOrderLine {
+                  lineNumber
+                  sequenceNumber
+                }
+                quantityInReceiptUnitReceived
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
