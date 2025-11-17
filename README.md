@@ -40,7 +40,7 @@
 
 ## Minimal version Sage X3
 
-For GraphQL : Sage X3 2023R2 - upd master
+For GraphQL : Sage X3 2023R2
 
 ## Objectives
 
