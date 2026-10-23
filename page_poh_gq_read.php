@@ -69,7 +69,7 @@
 											$receiptSite=$_POST ["formpurshasesite"];
 											$receiptDate=date("Y-m-d");
 											$supplier=$_POST ["formsupplier"];
-											
+											$transaction="ALL";
 											$tabLineNumber = $_POST ["formtablinenumber"];
 											$tabProduct = $_POST ["formtabproduct"];
 											$tabBorderUnit = $_POST ["formtaborderunit"];
@@ -81,15 +81,16 @@
 													$arrayLine[$i] = array (
 															"receiptSite"=>$receiptSite,
 															"purchaseOrder"=>$ordnum,
-															"purchaseOrderLineNumber"=>$tabLineNumber[$i],
+															//"purchaseOrderLineNumber"=>$tabLineNumber[$i],
+															"purchaseOrderLine"=>"_id:".$ordnum."|".$tabLineNumber[$i]."|"."1",
 															"product"=>$tabProduct[$i],
 															"receiptUnit"=>$tabBorderUnit[$i],
 															"quantityInReceiptUnitReceived"=>$tabQtyToReceive[$i],
-															"stockDetails"=> array (
+															"stockDetails"=>array(array (
 																"status"=>"A",
 																"packingUnit"=>$tabBorderUnit[$i],
 																"quantityInPackingUnit"=>$tabQtyToReceive[$i]
-																			)
+																			))
 															);
 											}
 										}

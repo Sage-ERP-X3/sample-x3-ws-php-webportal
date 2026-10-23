@@ -8,7 +8,9 @@ query mySpeList($filter: String, $orderBy: String) {
               _id
               name
             }
-            _id
+            purchaseReceipt {
+              _id
+            }
             lineNumber
             receiptDate
             supplier {

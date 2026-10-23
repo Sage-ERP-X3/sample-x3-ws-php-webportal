@@ -40,7 +40,7 @@
 
 ## Minimal version Sage X3
 
-For GraphQL : Sage X3 2023R2
+For GraphQL : Sage X3 2026R1
 
 ## Objectives
 
@@ -53,7 +53,7 @@ which uses **SOAP X3 web services** and **GraphQL api**.
 
 ## X3 Patch
 
-> Only **mandatory**  if you want test the SOAP web services.
+> Only **mandatory** if you want test the SOAP web services.
 
 ## Configure Connected applications in Sage X3
 
@@ -75,7 +75,8 @@ Copy the secret to keep in a text file
 
 ## How execute this Web Portal ?
 
-> We have two options to execute this Web Portal     
+> We have two options to execute this Web Portal
+>
 > - Option 1 : with the Web server **Wampserver**
 > - Option 2 : with **Docker** on your local machine
 
@@ -83,7 +84,7 @@ Copy the secret to keep in a text file
 
 Execution with Wampserver
 
-See [Create_a_WebPortal_SageX3_WebServices_ENG.pdf](./doc/pdf/Create_a_WebPortal_SageX3_WebServices_ENG.pdf)  
+See [Create_a_WebPortal_SageX3_WebServices_ENG.pdf](./doc/pdf/Create_a_WebPortal_SageX3_WebServices_ENG.pdf)
 
 ### Option 2 - with **Docker** on you local machine
 
@@ -100,7 +101,7 @@ See [Create_a_WebPortal_SageX3_WebServices_ENG.pdf](./doc/pdf/Create_a_WebPortal
 
 - The project file for the PHP web portal is available from GitHub. The project file is open to everyone, so you do not need a GitHub account. The download file contains everything you need to create and configure the portal including the **application X3 patch** for the YOSOH web service.
 
-- From GitHub https://github.com/Sage-ERP-X3/sample-x3-ws-php-webportal, 
+- From GitHub https://github.com/Sage-ERP-X3/sample-x3-ws-php-webportal,
 - Click Code / Download ZIP
 
 ![](./readme-img/image.png)
@@ -118,23 +119,23 @@ Extract all files to **C:\webportal**.
 Next, you need to configure the portal to communicate with Sage X3.
 
 In the folder**C:\webportal\config**, copy the file
- - **Config_template.php** file to
- - **Config.php**
-  
+
+- **Config_template.php** file to
+- **Config.php**
 
 The following fields should match what you entered when you configured your web service pool in Sage X3:
 
 **Config.php**
 
--  WEB_SERVER_X3 : `X3 server url`
--  POOL_ALIAS : `Pool alias`
--  GQL_ENDPOINT : `Endpoint X3 for Grpahql API`
--  WEB_SITE_CONSOLE : `true`. To have Graphql request in the Browser console
--  JWT_CLIENT_ID : `Client id from configuration of connected applications`
--	 JWT_SECRET_OR_PRIVATE_KEY : `Secret from configuration of connected applications`
--  JWT_USER : `User from configuration of connected applications`
-  
-````php
+- WEB_SERVER_X3 : `X3 server url`
+- POOL_ALIAS : `Pool alias`
+- GQL_ENDPOINT : `Endpoint X3 for Grpahql API`
+- WEB_SITE_CONSOLE : `true`. To have Graphql request in the Browser console
+- JWT_CLIENT_ID : `Client id from configuration of connected applications`
+- JWT_SECRET_OR_PRIVATE_KEY : `Secret from configuration of connected applications`
+- JWT_USER : `User from configuration of connected applications`
+
+```php
 <?php
 
 class Config {
@@ -148,7 +149,7 @@ class Config {
 	public static $WEB_SERVER_X3 = "http://<name webserevr X3>";
 
 	/*
-	 	Config SOAP Web services X3 
+	 	Config SOAP Web services X3
 	*/
 
 	public static $CODE_LANG       	= "ENG";
@@ -156,7 +157,7 @@ class Config {
 	public static $WS_ORDER  		= "YOSOH";
 	public static $WS_STOCK  		= "YSTOCK_LOT";
 	public static $WS_PRODUCT		= "YOITM";
-	
+
 	/*
 	 	Config GraphQL X3
 	*/
@@ -175,7 +176,7 @@ class Config {
 	/*
 	 	Config JWT
 	*/
-	
+
 	public static $JWT_CLIENT_ID    			= "...";
 	public static $JWT_SECRET_OR_PRIVATE_KEY    = "...";
 	public static $JWT_AUDIENCE     			= "";
@@ -183,11 +184,10 @@ class Config {
 }
 ?>
 
-````
+```
 
 - `WS_ORDER` : YOSOH The name of the Sales orders Web services.
 - `WEB_SITE_LOGIN and WEB_SITE_PASSWD` represent the credentials you will share with those who will be accessing these web services via the web portal.
-
 
 > Important! Do not change the punctuation and formatting.
 
@@ -195,7 +195,7 @@ class Config {
 
 > **The pool of webservice** only mandatory for Soap Web services
 
-Take into account the different parts in this document [Create_a_WebPortal_SageX3_WebServices_ENG.pdf](./doc/pdf/Create_a_WebPortal_SageX3_WebServices_ENG.pdf).           
+Take into account the different parts in this document [Create_a_WebPortal_SageX3_WebServices_ENG.pdf](./doc/pdf/Create_a_WebPortal_SageX3_WebServices_ENG.pdf).
 
 - Configure the server and the pool of Web services
 
@@ -218,7 +218,6 @@ After installing the patch with the web service, you need to publish the service
 In the application, navigate to Development > Script dictionary > Scripts and open Web services (GESAWE).
 Cliquez sur Publication globale.
 
-
 ##### Execute the web portal with Docker
 
 Open vscode on **C:\webportal\sample-x3-ws-php-webportal-ws-graphql**
@@ -227,26 +226,25 @@ Open vscode on **C:\webportal\sample-x3-ws-php-webportal-ws-graphql**
 
 Open new terminal
 
-````
+```
 # Start Web portal server
 $ docker compose up -d
 [+] Running 2/2
- ✔ Network sample-x3-ws-php-webportal-ws-graphql_default      Created                                                   0.0s 
- ✔ Container sample-x3-ws-php-webportal-ws-graphql-php-dev-1  Started                                                   0.4s 
+ ✔ Network sample-x3-ws-php-webportal-ws-graphql_default      Created                                                   0.0s
+ ✔ Container sample-x3-ws-php-webportal-ws-graphql-php-dev-1  Started                                                   0.4s
 
-````
+```
 
 ![alt text](./readme-img/image-7.png)
 
 Open ./docker-compose.yml
 
-we have ports:
-      - 80:80
+we have ports: - 80:80
 
-The second 80 is the port for http server. 
+The second 80 is the port for http server.
 You can change
 
-````yml
+```yml
 services:
   php-dev:
     build:
@@ -259,8 +257,7 @@ services:
       - 80:80
 volumes:
   .:
-
-````
+```
 
 Open Web server on http://locahost:80
 
@@ -268,13 +265,13 @@ Open Web server on http://locahost:80
 
 ##### Stop the web portal with Docker
 
-````
+```
 # Stop Web portal server
 $ docker compose down
 [+] Running 2/2
- ✔ Container sample-x3-ws-php-webportal-ws-graphql-php-dev-1  Removed                                                   1.3s 
- ✔ Network sample-x3-ws-php-webportal-ws-graphql_default      Removed                                                   0.3s 
-````
+ ✔ Container sample-x3-ws-php-webportal-ws-graphql-php-dev-1  Removed                                                   1.3s
+ ✔ Network sample-x3-ws-php-webportal-ws-graphql_default      Removed                                                   0.3s
+```
 
 ## Details
 
@@ -383,7 +380,7 @@ query mySpeDetail($id: Id!) {
                 lineNumber
                 product {
                   code
-                  description1
+                  localizedDescription1
                 }
                 quantityInOrderUnitOrdered
                 quantityInStockUnitReceived

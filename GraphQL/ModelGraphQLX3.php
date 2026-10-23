@@ -42,7 +42,8 @@ class ModelGraphQLX3 {
         //var_dump(curl_getinfo($curl));
         #var_dump($response);
         //console_php_log('GraphQL response',$response);
-        curl_close($curl);
+        // 
+        //deprecated depuis php 8.5 plus d'effet curl_close($curl);
         //var_dump(curl_error($curl));
 		return $response;
 	}
