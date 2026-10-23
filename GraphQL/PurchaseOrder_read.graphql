@@ -28,7 +28,7 @@ query mySpeDetail($id: Id!) {
                 lineNumber
                 product {
                   code
-                  description1
+                  localizedDescription1
                 }
                 quantityInOrderUnitOrdered
                 quantityInStockUnitReceived

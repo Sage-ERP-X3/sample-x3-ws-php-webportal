@@ -86,7 +86,7 @@ class PurchaseOrder extends ModelGraphQLX3 {
 			$str .= "</td>";
 
 			$str .= "<td>";
-			$str .= $edge->{'node'}->{'product'}->{'description1'};
+			$str .= $edge->{'node'}->{'product'}->{'localizedDescription1'};
 			$str .= "</td>";
 
 			$str .= "<td>";
@@ -144,7 +144,7 @@ class PurchaseOrder extends ModelGraphQLX3 {
 			$str .= "</td>";
 
 			$str .= "<td>";
-			$val= $edge->{'node'}->{'_id'};
+			$val= $edge->{'node'}->{'purchaseReceipt'}->{'_id'};
 			$str .= '<a href="page_pth_gq_read.php?_id='.$val.'">'.$val.'</a>';
 			$str .= "</td>";
 			
